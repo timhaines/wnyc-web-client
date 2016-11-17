@@ -16,7 +16,7 @@ export default Component.extend(BetaActionsMixin, {
   click: function({target}){
     if (target.tagName === "A"){
       //send tracking
-      this.get('metrics').trackEvent({
+      this.get('metrics').trackEvent('GoogleAnalytics', {
         category: 'WNYC Menu',
         action: "Clicked " + target.text,
       });
@@ -28,7 +28,7 @@ export default Component.extend(BetaActionsMixin, {
       this.get('router').transitionTo('djangorendered', ['search/'], {"q": val});
     },
     logout() {
-      this.get('metrics').trackEvent({
+      this.get('metrics').trackEvent('GoogleAnalytics', {
         category: 'WNYC Menu',
         label: 'Clicked Logout',
       });
