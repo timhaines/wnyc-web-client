@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import service from 'ember-service/inject';
 import PlayParamMixin from 'overhaul/mixins/play-param';
-import config from 'overhaul/config/environment';
 const { get } = Ember;
 const { hash: waitFor } = Ember.RSVP;
 
@@ -64,7 +63,7 @@ export default Ember.Route.extend(PlayParamMixin, {
     dataPipeline.reportItemView({
       cms_id: get(model, 'story.id'),
       item_type: get(model, 'story.itemType'),
-      site_id: config.siteId
+      site_id: get(model, 'story.siteId')
     });
   }
 });
