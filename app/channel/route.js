@@ -12,8 +12,9 @@ import { retryFromServer } from 'overhaul/lib/compat-hooks';
 import PlayParamMixin from 'overhaul/mixins/play-param';
 
 export default Route.extend(PlayParamMixin, {
-  session: service(),
-  metrics: service(),
+  session:      service(),
+  metrics:      service(),
+  dataPipeline: service(),
 
   model(params) {
     const channelType = this.routeName;
@@ -30,26 +31,34 @@ export default Route.extend(PlayParamMixin, {
     .catch(e => retryFromServer(e, listingSlug.replace(/\/*$/, '/')));
   },
   afterModel({ channel }) {
-    const channelTitle = get(channel, 'title');
-    const metrics = get(this, 'metrics');
-    const nprVals = get(channel, 'nprAnalyticsDimensions');
+    let channelTitle = get(channel, 'title');
+    let metrics = get(this, 'metrics');
+    let dataPipeline = get(this, 'dataPipeline');
+    let nprVals = get(channel, 'nprAnalyticsDimensions');
     
     if (channel.get('headerDonateChunk')) {
       this.send('updateDonateChunk', channel.get('headerDonateChunk'));
     }
 
+    // google analytics
     metrics.trackEvent({
       category: `Viewed ${get(channel, 'listingObjectType').capitalize()}`,
       action: channelTitle,
-      id: channel.get('cmsPK'),
-      type: channel.get('listingObjectType')
     });
 
+    // NPR
     metrics.invoke('trackPage', 'NprAnalytics', {
       page: `/${get(this, 'listingSlug')}`,
       title: channelTitle,
       nprVals,
       isNpr: true
+    });
+    
+    // data pipeline
+    dataPipeline.reportItemView({
+      cms_id: channel.get('cmsPK'),
+      item_type: channel.get('listingObjectType'),
+      site_id: channel.get('siteId')
     });
   },
   setupController(controller, model) {
