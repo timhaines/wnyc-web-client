@@ -10,6 +10,7 @@ const { hash: waitFor } = Ember.RSVP;
 const inflector = new Inflector(Inflector.defaultRules);
 import { retryFromServer } from 'overhaul/lib/compat-hooks';
 import PlayParamMixin from 'overhaul/mixins/play-param';
+import config from 'overhaul/config/environment';
 
 export default Route.extend(PlayParamMixin, {
   session:      service(),
@@ -57,7 +58,8 @@ export default Route.extend(PlayParamMixin, {
     dataPipeline.reportItemView({
       cms_id: channel.get('cmsPK'),
       item_type: channel.get('listingObjectType'),
-      site_id: channel.get('siteId')
+      site_id: channel.get('siteId'),
+      client: config.clientSlug
     });
   },
   setupController(controller, model) {

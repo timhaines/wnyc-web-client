@@ -83,6 +83,7 @@ module.exports = function(environment) {
     queueAudioBumperURL: 'http://audio.wnyc.org/streambumper/streambumper000008_audio_queue.mp3',
     siteSlug: 'wnyc',
     siteName: 'WNYC',
+    clientSlug: 'wnyc_web',
     renderGoogleAds: true,
     // these are provided via a .env file or else by Django's EmberAdapter
     // fall back to demo GA key
