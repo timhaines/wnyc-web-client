@@ -9,7 +9,7 @@ export default Ember.Service.extend({
     this.get('session').syncBrowserId(id => this.set('browserId', id));
   },
 
-  sendStart(pk, context) {
+  sendPlay(pk, context) {
     return this._queueListenAction(pk, 'start', context);
   },
 
@@ -29,7 +29,7 @@ export default Ember.Service.extend({
     return this._queueListenAction(pk, 'skip_15_back', context);
   },
 
-  sendFinish(pk, context) {
+  sendComplete(pk, context) {
     return this._queueListenAction(pk, 'finish', context);
   },
   
@@ -41,6 +41,7 @@ export default Ember.Service.extend({
     return this._queueListenAction(pk, 'delete', context);
   },
 
+  sendHeardStream() {},
 
 
   /* ------------------------------------------------------------ */
