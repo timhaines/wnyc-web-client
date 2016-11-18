@@ -30,7 +30,7 @@ moduleForAcceptance('Acceptance | discover metrics',
   {
     beforeEach() {
       velocity.mock = true;
-      window.Modernizr.touch = false;
+      window.Modernizr.touchevents = false;
       let application = this.application;
       let session = currentSession(application);
       session.set('data.discover-excluded-shows',  []);
@@ -167,7 +167,7 @@ moduleForAcceptance('Acceptance | discover metrics returning user',
   {
     beforeEach() {
       velocity.mock = true;
-      window.Modernizr.touch = false;
+      window.Modernizr.touchevents = false;
       let application = this.application;
       let session = currentSession(application);
       server.create('discover-topic', {title: "Test Topic", url: "test-topic"});
