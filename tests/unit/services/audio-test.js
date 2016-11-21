@@ -23,7 +23,8 @@ moduleFor('service:audio', 'Unit | Service | audio', {
 
   beforeEach() {
     const sessionStub = Ember.Service.extend({
-      data: {} // we only really need the data thing
+      data: {}, // we only really need the data thing
+      syncBrowserId(cb) { cb('secrets'); }
     });
     const metricsStub = Ember.Service.extend({
       trackEvent() {}
