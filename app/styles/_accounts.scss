@@ -1,3 +1,27 @@
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
+=======
+@mixin account-input {
+    height: 50px;
+    padding: 12px;
+    border-radius: 4px;
+    background-color: white;
+    border: solid 1px $lightestgray;
+    font-size: 18px;
+    &:focus {
+      border-color: $blue;
+    }
+}
+
+.accounts #site-chrome {
+  padding-left: 0;
+}
+.accounts .sitechrome-page-content-area {
+  @include mq($medium-and-up) {
+    padding-left: 318px;
+  }
+}
+
+>>>>>>> Add login and signup forms
 .account-togglelogin {
   position: absolute;
   right: 30px;
@@ -15,6 +39,10 @@
 .account-promo {
   width: 0;
   height: 0;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
+=======
+
+>>>>>>> Add login and signup forms
   &-blurb {
     display: none;
   }
@@ -27,12 +55,16 @@
     left: 0;
     width: 318px;
     height: 100vh;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
     background-color: black;
     @include responsive-background-image('/assets/img/backgrounds/melissa_bg.jpg', '/assets/img/backgrounds/melissa_bg@2x.jpg');
     background-repeat: no-repeat;
     background-position: top right;
     background-size: 100%;
 
+=======
+    background: $lightgray;
+>>>>>>> Add login and signup forms
     &-blurb {
       position: absolute;
       display: block;
@@ -41,9 +73,12 @@
       width: 250px;
       color: white;
     }
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
     &-attribution {
       font-size: 14px;
     }
+=======
+>>>>>>> Add login and signup forms
     &-heading {
       font-size: 12px;
       font-weight: 700;
@@ -61,18 +96,24 @@
 
 .account-logo {
   position: absolute;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
   top: 0;
   left: 0;
   // align logo with form
   @include mq("(min-width: 460px) and (max-width: #{$medium - 1}px)") {
     left: calc(50% - 230px);
   }
+=======
+  top: 30px;
+  left: 30px;
+>>>>>>> Add login and signup forms
   svg {
     height: 33px;
     width: 79px;
   }
   svg path {
     fill: $red;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
   }
   > a {
     display: block;
@@ -82,11 +123,31 @@
   > a:focus {
     border: 1px dotted rgba(black, 0.2);
   }
+=======
+    @include mq($medium-and-up) {
+      fill: white;
+    }
+  }
+}
+
+.account-form-input-advice {
+  display: none;
+  font-size: 12px;
+  color: $lightgray;
+}
+
+.account-form-input:focus + .account-form-input-footer > .account-form-input-advice {
+  display: inline;
+>>>>>>> Add login and signup forms
 }
 
 .account-form {
   max-width: 460px;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
   margin: 0 auto 75px;
+=======
+  margin: 0 auto;
+>>>>>>> Add login and signup forms
   padding: 100px 30px 0 30px;
 
   &-heading {
@@ -101,19 +162,51 @@
       margin: 0 0 25px 0;
     }
   }
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
   &-description {
     margin: 0 0 28px 0;
+=======
+  &-input {
+    display: block;
+    width: 100%;
+    @include account-input;
+  }
+  &-input-footer {
+    @include display-flex;
+    width: 100%;
+    margin-bottom: 18px;
+    > span {
+      @include flex(1);
+    }
+    > .account-form-helplink {
+      text-align: right;
+    }
+  }
+  &-label {
+    display: block;
+    margin-bottom: 6px;
+    height: 17px;
+    font-size: 12px;
+    color: $lightgray;
+  }
+  &-error {
+    color: $red;
+    font-size: 12px;
+>>>>>>> Add login and signup forms
   }
   &-link {
     font-size: 14px;
   }
   &-btn {
     margin-bottom: 15px;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
     > .fa {
       margin-right: 6px;
       font-size: 24px;
       vertical-align: text-bottom;
     }
+=======
+>>>>>>> Add login and signup forms
   }
   &-separator {
     font-size: 16px;
@@ -146,6 +239,7 @@
     text-align: center;
     color: $lightgray;
     margin-bottom: 23px;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
     a {
       color: $lightgray;
       border-bottom: 1px solid rgba($lightgray, 0.3);
@@ -156,6 +250,11 @@
   }
 
   @include mq($middle-narrow-and-up) {
+=======
+  }
+
+  @include mq($medium-and-up) {
+>>>>>>> Add login and signup forms
     &-row {
       position: relative;
     }
@@ -165,6 +264,7 @@
     &-row .account-form-col2:last-child {
       position: absolute;
       top: 0;
+<<<<<<< ec379198d8717df26d0b2c982e463187cad67736
       left: 207px;
     }
   }
@@ -218,3 +318,9 @@
     padding-left: 318px;
   }
 }
+=======
+      left: 200px;
+    }
+  }
+}
+>>>>>>> Add login and signup forms
