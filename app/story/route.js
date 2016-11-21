@@ -1,12 +1,15 @@
 import Ember from 'ember';
 import service from 'ember-service/inject';
 import PlayParamMixin from 'overhaul/mixins/play-param';
+import config from 'overhaul/config/environment';
 const { get } = Ember;
 const { hash: waitFor } = Ember.RSVP;
 
 export default Ember.Route.extend(PlayParamMixin, {
-  metrics: service(),
-  session: service(),
+  metrics:      service(),
+  session:      service(),
+  dataPipeline: service(),
+  
   setupController(controller) {
     controller.set('isMobile', window.Modernizr.touchevents);
     return this._super(...arguments);
@@ -34,6 +37,7 @@ export default Ember.Route.extend(PlayParamMixin, {
   },
   afterModel(model) {
     let metrics = get(this, 'metrics');
+    let dataPipeline = get(this, 'dataPipeline');
     let {containers:action, title:label} = get(model, 'story.analytics');
     let nprVals = get(model, 'story.nprAnalyticsDimensions');
 
@@ -41,20 +45,26 @@ export default Ember.Route.extend(PlayParamMixin, {
       this.send('updateDonateChunk', get(model, 'story.extendedStory.headerDonateChunk'));
     }
 
-    metrics.trackEvent({
-      eventName: 'viewedStory',
+    // google analytics
+    metrics.trackEvent('GoogleAnalytics', {
       category: 'Viewed Story',
       action,
       label,
-      id: get(model, 'story.id'),
-      type: get(model, 'story.itemType')
     });
 
-    metrics.invoke('trackPage', 'NprAnalytics', {
+    // NPR
+    metrics.trackPage('NprAnalytics', {
       page: `/story/${get(model, 'story.slug')}`,
       title: label,
       nprVals,
-      isNpr: true
+    });
+    
+    // data pipeline
+    dataPipeline.reportItemView({
+      cms_id: get(model, 'story.id'),
+      item_type: get(model, 'story.itemType'),
+      site_id: get(model, 'story.siteId'),
+      client: config.clientSlug
     });
   }
 });

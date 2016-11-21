@@ -4,14 +4,13 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import computed, { readOnly, alias, or } from 'ember-computed';
 import { bind } from 'ember-runloop';
-import { assign } from 'ember-platform';
 import RSVP from 'rsvp';
 import { classify as upperCamelize } from 'ember-string';
 import Ember from 'ember';
+import config from 'overhaul/config/environment';
 
 const FIFTEEN_SECONDS = 1000 * 15;
 const TWO_MINUTES     = 1000 * 60 * 2;
-const PLATFORM        = 'NYPR_Web';
 
 export default Service.extend({
   poll:             service(),
@@ -22,7 +21,7 @@ export default Service.extend({
   bumperState:      service(),
   listens:          service('listen-history'),
   queue:            service('listen-queue'),
-  listenActions:    service(),
+  dataPipeline:      service(),
 
   hifi:             service(),
   isReady:          readOnly('hifi.isReady'),
@@ -109,6 +108,8 @@ export default Service.extend({
     return this.get('hifi').play(urlPromise).then(({sound, failures}) => {
       if (newStoryPlaying) {
         this._trackOnDemandPlay(story, context);
+      } else {
+        this._trackResume(story);
       }
 
       // independent of context, if this item is already the first item in your
@@ -340,16 +341,48 @@ export default Service.extend({
     this.get('listens').addListen(story);
   },
 
-  sendCompleteListenAction(pk) {
-    this.get('listenActions').sendComplete(pk, PLATFORM);
+  sendCompleteListenAction({id, itemType, audioType}) {
+    let data = {
+      audio_type: audioType,
+      cms_id: id,
+      site_id: config.siteId,
+      item_type: itemType,
+      current_position: this.get('position')
+    };
+    this.get('dataPipeline').reportListenAction('finish', data);
   },
 
-  sendPlayListenAction(pk) {
-    this.get('listenActions').sendPlay(pk, PLATFORM);
+  sendPlayListenAction({id, itemType, audioType}) {
+    let data = {
+      audio_type: audioType,
+      cms_id: id,
+      site_id: config.siteId,
+      item_type: itemType,
+      current_position: this.get('position')
+    };
+    this.get('dataPipeline').reportListenAction('start', data);
+  },
+  
+  sendResumeListenAction({id, itemType, audioType}) {
+    let data = {
+      audio_type: audioType,
+      cms_id: id,
+      site_id: config.siteId,
+      item_type: itemType,
+      current_position: this.get('position')
+    };
+    this.get('dataPipeline').reportListenAction('resume', data);
   },
 
-  sendPauseListenAction(pk) {
-    this.get('listenActions').sendPause(pk, PLATFORM, get(this, 'position'));
+  sendPauseListenAction({id, itemType, audioType}) {
+    let data = {
+      audio_type: audioType,
+      cms_id: id,
+      site_id: config.siteId,
+      item_type: itemType,
+      current_position: this.get('position')
+    };
+    this.get('dataPipeline').reportListenAction('pause', data);
   },
 
   _trackPlayerEvent(options) {
@@ -369,12 +402,12 @@ export default Service.extend({
     if (withRegion || withAnalytics) {
       label = `${region}${analyticsCode}`;
     }
-    metrics.trackEvent({category, action, label, model: story});
+    metrics.trackEvent('GoogleAnalytics', {category, action, label});
   },
 
   _trackPlayerEventForNpr(options) {
     let metrics = get(this, 'metrics');
-    metrics.trackEvent('NprAnalytics', assign(options, {isNpr: true}));
+    metrics.trackEvent('NprAnalytics', options);
   },
 
   _trackAllCodecFailures(failures, sound) {
@@ -422,7 +455,7 @@ export default Service.extend({
       action: 'On_demand_audio_play',
       label: get(story, 'audio')
     });
-    this.sendPlayListenAction(get(story, 'id'));
+    this.sendPlayListenAction(story);
 
     if (context === 'queue' || context === 'history') {
       this._trackPlayerEvent({
@@ -483,6 +516,10 @@ export default Service.extend({
       label: 'Audio Bumper',
     });
   },
+  
+  _trackResume(audio) {
+    this.sendResumeListenAction(audio);
+  },
 
   _trackAutoplayQueue() {
     this._trackPlayerEvent({
@@ -524,7 +561,7 @@ export default Service.extend({
 
     if (audio && get(audio, 'audioType') !== 'stream') {
       // we're not set up to handle pause listen actions from streams atm
-      this.sendPauseListenAction(audio.id);
+      this.sendPauseListenAction(audio);
     }
   },
 
@@ -536,7 +573,7 @@ export default Service.extend({
       region: upperCamelize(context),
     });
 
-    this.sendCompleteListenAction(story.id);
+    this.sendCompleteListenAction(story);
   },
 
   /* HELPERS -------------------------------------------------------*/

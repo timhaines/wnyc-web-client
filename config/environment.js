@@ -13,15 +13,22 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    'ember-metrics': {
-      includeAdapters: ['google-analytics', 'data-warehouse']
-    },
     emberHifi: {
       connections: [{
         name: 'NativeAudio'
       }]
     },
-    metricsAdapters: [],
+    metricsAdapters: [{
+      name: 'GoogleAnalytics',
+      config: {
+        id: process.env.GOOGLE_ANALYTICS || 'UA-46158613-1'
+      },
+    }, {
+      name: 'NprAnalytics',
+      config: {
+        id: 'UA-18188937-11'
+      }
+    }],
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -83,6 +90,7 @@ module.exports = function(environment) {
     queueAudioBumperURL: 'http://audio.wnyc.org/streambumper/streambumper000008_audio_queue.mp3',
     siteSlug: 'wnyc',
     siteName: 'WNYC',
+    clientSlug: 'wnyc_web',
     renderGoogleAds: true,
     // these are provided via a .env file or else by Django's EmberAdapter
     // fall back to demo GA key
