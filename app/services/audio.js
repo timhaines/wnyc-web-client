@@ -567,7 +567,7 @@ export default Service.extend({
       region: upperCamelize(context),
     });
 
-    this.sendCompleteListenAction(story.getProperties('id', 'itemType', 'audioType', 'siteId'));
+    this.sendCompleteListenAction(story);
   },
 
   /* HELPERS -------------------------------------------------------*/
