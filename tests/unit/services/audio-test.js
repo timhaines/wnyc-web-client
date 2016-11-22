@@ -355,24 +355,89 @@ test('can play a segmented story all the way through more than once', function(a
 test('service records a listen when a story is played', function(assert) {
 
   let done = assert.async();
-  let story = server.create('story');
+  let audio = DummyConnection.create({
+    url: '/audio.mp3',
+    duration: 30 * 60 * 1000
+  });
+  let story = server.create('story', { audio: '/audio.mp3' });
   let reportStub = sinon.stub();
   let service = this.subject({
       dataPipeline: {
         reportListenAction: reportStub
       }
   });
+  service.get('hifi.soundCache').cache(audio);
+  let expected = {
+    audio_type: 'ondemand',
+    cms_id: story.id,
+    item_type: story.itemType,
+    site_id: story.siteId,
+    current_position: undefined
+  };
     
   Ember.run(() => {
     service.set('hifi', hifiStub);
     service.play(story.id).then(() => {
+      service.fastForward();
+      service.rewind();
+      service.setPosition(0.5);
       service.pause();
       service.play(story.id).then(() => {
-        assert.equal(reportStub.callCount, 3);
-        assert.ok(reportStub.calledWith('start'), 'sent start listen action');
-        assert.ok(reportStub.calledWith('pause'), 'sent pause listen action');
-        assert.ok(reportStub.calledWith('resume'), 'sent resume listen action');
-        done();
+        service.finishedTrack();
+        wait().then(() => {
+          assert.equal(reportStub.callCount, 7);
+          assert.deepEqual(reportStub.getCall(0).args, ['start', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(1).args, ['forward_15', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(2).args, ['back_15', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(3).args, ['set_position', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(4).args, ['pause', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(5).args, ['resume', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(6).args, ['finish', expected], 'should have received proper attrs');
+          done();
+        });
+      });
+    });
+  });
+});
+
+test('service records a listen when a stream is played', function(assert) {
+
+  let done = assert.async();
+  let reportStub = sinon.stub();
+  let service = this.subject({
+      dataPipeline: {
+        reportListenAction: reportStub
+      }
+  });
+  let currentStory = server.create('story');
+  let stream = server.create('stream');
+  server.create('whats-on', {
+    current_show: { episode_pk: currentStory.id }
+  });
+  let audio = DummyConnection.create({ url: stream.attrs.urls.mp3[0] });
+  
+  let expected = {
+    audio_type: 'stream',
+    cms_id: currentStory.id,
+    item_type: currentStory.itemType,
+    site_id: currentStory.siteId,
+    stream_id: stream.slug,
+    current_position: undefined,
+  };
+    
+  service.get('hifi.soundCache').cache(audio);
+  
+  Ember.run(() => {
+    service.play(stream.slug).then(() => {
+      service.pause();
+      service.play(stream.slug).then(() => {
+        wait().then(() => {
+          assert.equal(reportStub.callCount, 3);
+          assert.deepEqual(reportStub.getCall(0).args, ['start', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(1).args, ['pause', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(2).args, ['resume', expected], 'should have received proper attrs');
+          done();
+        });
       });
     });
   });
