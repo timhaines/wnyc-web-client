@@ -217,7 +217,7 @@ export default Service.extend({
   },
 
   playNextSegment() {
-    let story = get(this, 'currentStory');
+    let story = get(this, 'currentAudio');
     let nextSegment = story.getNextSegment();
     if (nextSegment) {
       return this.get('hifi').play(nextSegment, {position: 0})
@@ -232,13 +232,20 @@ export default Service.extend({
   },
 
   setPosition(percentage) {
+    // send listenAction before setting position so we capture the timestamp where
+    // the action itself occurs
+    this.sendListenAction(this.get('currentAudio'), 'set_position');
+    
     let position = (percentage * get(this, 'duration')) || 0;
-
     set(this, 'position', position);
     this.sendListenAction(this.get('currentAudio'), 'set_position');
   },
 
   rewind() {
+    // send listenAction before setting position so we capture the timestamp where
+    // the action itself occurs
+    this.sendListenAction(this.get('currentAudio'), 'back_15');
+    
     let currentPosition = get(this, 'position');
     set(this, 'position', currentPosition - FIFTEEN_SECONDS);
 
@@ -251,6 +258,10 @@ export default Service.extend({
   },
 
   fastForward() {
+    // send listenAction before setting position so we capture the timestamp where
+    // the action itself occurs
+    this.sendListenAction(this.get('currentAudio'), 'forward_15');
+    
     let currentPosition = get(this, 'position');
     set(this, 'position', currentPosition + FIFTEEN_SECONDS);
 
@@ -360,7 +371,7 @@ export default Service.extend({
   
   sendListenAction(storyOrStream, type) {
     let data = {
-      current_position: this.get('position') || undefined
+      current_position: this.get('position')
     };
     storyOrStream.forListenAction(data).then(d => {
       this.get('dataPipeline').reportListenAction(type, d);
