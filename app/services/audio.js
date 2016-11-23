@@ -238,7 +238,6 @@ export default Service.extend({
     
     let position = (percentage * get(this, 'duration')) || 0;
     set(this, 'position', position);
-    this.sendListenAction(this.get('currentAudio'), 'set_position');
   },
 
   rewind() {
@@ -253,8 +252,6 @@ export default Service.extend({
       action: 'Skip Fifteen Seconds Back',
       withAnalytics: true
     });
-    
-    this.sendListenAction(this.get('currentStory'), 'back_15');
   },
 
   fastForward() {
@@ -269,8 +266,6 @@ export default Service.extend({
       action: 'Skip Fifteen Seconds Ahead',
       withAnalytics: true
     });
-    
-    this.sendListenAction(this.get('currentStory'), 'forward_15');
   },
 
   toggleMute() {
