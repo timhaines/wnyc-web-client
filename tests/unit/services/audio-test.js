@@ -29,6 +29,9 @@ moduleFor('service:audio', 'Unit | Service | audio', {
     const metricsStub = Ember.Service.extend({
       trackEvent() {}
     });
+    const bumperStub = Ember.Service.extend({
+      autoplayEnabled: false
+    });
     startMirage(this.container);
 
     this.register('service:session', sessionStub);
@@ -36,6 +39,9 @@ moduleFor('service:audio', 'Unit | Service | audio', {
 
     this.register('service:metrics', metricsStub);
     this.inject.service('metrics');
+
+    this.register('service:bumper-state', bumperStub);
+    this.inject.service('bumper-state');
   },
   afterEach() {
     server.shutdown();
