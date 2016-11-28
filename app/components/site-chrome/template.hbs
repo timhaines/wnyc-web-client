@@ -84,7 +84,7 @@
     <div class="scrollable-body">
       <div class="{{if media.isLargeAndUp 'box box--nopad'}}">
 
-      <ul class="list list--noborder flush {{unless media.isLargeAndUp 'list--inline list--spaced text--small' 'alignright '}}">
+      <ul class="list list--noborder flush {{unless media.isLargeAndUp 'list--inline list--spaced text--small' 'alignright'}}">
 
         <li class="list-item list-item--nav">
           {{#if media.isLargeAndUp}}
@@ -141,13 +141,9 @@
           {{/link-to}}
 
           {{#if features.autoplayPrefs}}
-          {{!-- Google Experiment Continuous Play - START --}}
-          {{#if (in-experimental-group 1) }}
             {{#link-to 'settings' tagName='li' href=false class="list-item list-item--nav" }}
               {{link-to 'Settings' 'settings' class="inherit" preventDefault=false}}
             {{/link-to}}
-          {{/if}}
-          {{!-- Google Experiment Continuous Play - END --}}
           {{/if}}
 
           {{#if session.isAuthenticated}}
@@ -181,13 +177,9 @@
           <ul class="list list--noborder flush alignright">
             {{!-- <div class="h5 text--heavy alignright"> --}}
             {{#if features.autoplayPrefs}}
-            {{!-- Google Experiment Continuous Play - START --}}
-            {{#if (in-experimental-group 1) }}
               {{#link-to 'settings' tagName='li' href=false class="list-item list-item--nav" }}
                 {{link-to 'Settings' 'settings' class="inherit" preventDefault=false}}
               {{/link-to}}
-            {{/if}}
-            {{!-- Google Experiment Continuous Play - END --}}
             {{/if}}
 
             {{#if session.isAuthenticated}}
