@@ -2,6 +2,7 @@ import Ember from 'ember';
 import service from 'ember-service/inject';
 import PlayParamMixin from 'overhaul/mixins/play-param';
 import config from 'overhaul/config/environment';
+import { beforeTeardown } from 'overhaul/lib/compat-hooks';
 const { get } = Ember;
 const { hash: waitFor } = Ember.RSVP;
 
@@ -66,5 +67,13 @@ export default Ember.Route.extend(PlayParamMixin, {
       site_id: get(model, 'story.siteId'),
       client: config.clientSlug
     });
+  },
+  
+  actions: {
+    willTransition() {
+      this._super(...arguments);
+      beforeTeardown();
+      return true;
+    }
   }
 });
