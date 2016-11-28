@@ -1,0 +1,59 @@
+{{#if emailSent}}
+  {{account-thanks email=changeset.email}}
+{{else}}
+<form class="account-form" {{action 'signUp' on='submit'}}>
+  <h2 class="account-form-heading">Sign up for an account</h2>
+
+  <button class="account-form-btn fb-btn">Sign up with Facebook</button>
+
+  <div class="account-form-separator">or</div>
+
+  <div class="account-form-row">
+    <div class="account-form-col2">
+      {{fancy-input
+        label='First Name'
+        placeholder='Enter name'
+        fieldname='first_name'
+        value=changeset.firstName
+        errors=changeset.error.firstName.validation
+      }}
+    </div>
+
+    <div class="account-form-col2">
+      {{fancy-input
+        label='Last Name'
+        placeholder='Enter name'
+        fieldname='last_name'
+        value=changeset.lastName
+        errors=changeset.error.lastName.validation
+      }}
+    </div>
+  </div>
+
+  {{fancy-input
+    label='Email'
+    type='email'
+    placeholder='you@email.com'
+    fieldname='email'
+    value=changeset.email
+    errors=changeset.error.email.validation
+  }}
+
+  {{fancy-input
+    label='Password'
+    type='password'
+    placeholder='Enter password'
+    fieldname='password'
+    value=changeset.password
+    errors=changeset.error.password.validation
+    helplinkUrl='/forgot'
+    helplinkText='Forgot Password?'
+  }}
+
+  <div class="account-form-notice">
+    By proceeding to create your account, you are agreeing to New York Public Radio’s <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+  </div>
+
+  <button type="submit" class="account-form-btn" disabled={{isProcessing}}>Sign Up</button>
+</form>
+{{/if}}

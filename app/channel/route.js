@@ -36,7 +36,7 @@ export default Route.extend(PlayParamMixin, {
     let metrics = get(this, 'metrics');
     let dataPipeline = get(this, 'dataPipeline');
     let nprVals = get(channel, 'nprAnalyticsDimensions');
-    
+
     if (channel.get('headerDonateChunk')) {
       this.send('updateDonateChunk', channel.get('headerDonateChunk'));
     }
@@ -53,7 +53,7 @@ export default Route.extend(PlayParamMixin, {
       title: channelTitle,
       nprVals,
     });
-    
+
     // data pipeline
     dataPipeline.reportItemView({
       cms_id: channel.get('cmsPK'),
@@ -71,7 +71,7 @@ export default Route.extend(PlayParamMixin, {
       model
     });
   },
-  
+
   actions: {
     willTransition() {
       this._super(...arguments);

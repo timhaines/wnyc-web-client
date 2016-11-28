@@ -1,0 +1,29 @@
+<form class="account-form" {{action 'login' on=submit}}>
+  <h2 class="account-form-heading">Log in to WNYC</h2>
+
+  <input type="button" class="account-form-btn fb-btn" value="Log in with Facebook">
+
+  <div placeholder="you@email.com" class="account-form-separator">or</div>
+
+  {{fancy-input
+    label='Email'
+    type='email'
+    placeholder='you@email.com'
+    fieldname='email'
+    value=changeset.email
+    errors=changeset.error.email.validation
+  }}
+
+  {{fancy-input
+    label='Password'
+    type='password'
+    placeholder='Enter password'
+    fieldname='password'
+    value=changeset.password
+    errors=changeset.error.password.validation
+    helplinkUrl='/forgot'
+    helplinkText='Forgot Password?'
+  }}
+
+  <input type="button" class="account-form-btn" value="Log in" {{action 'validate' changeset}} disabled={{isProcessing}}>
+</form>
