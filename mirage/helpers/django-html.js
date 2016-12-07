@@ -522,7 +522,7 @@ var HTML = `<html>
 
 
               <div class="media-body">
-                  <div class="text--small dimmed">Published in</div>
+                  <div class="text--small dimmed">Published by</div>
 
                   <a class="text--mq-bluewhite"  href="http://dev.wnyc.net:4444/shows/lopate">
                       The Leonard Lopate Show
