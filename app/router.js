@@ -56,6 +56,11 @@ Router.map(function() {
     this.route('index', { path: 'playlist'});
     this.route('redirect', { path: '/'} );
   });
+  
+  this.route('design', function() {
+    this.route('index', { path: '/'});
+    this.route('about');  
+  });
 
   this.route('accounts', function() {
     this.route('login');

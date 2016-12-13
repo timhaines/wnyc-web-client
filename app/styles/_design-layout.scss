@@ -1,0 +1,39 @@
+.design {  
+  .design-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 50px;
+    margin-top: 66px;
+       
+    .design-sidebar {
+      min-width: 200px;
+      margin: 10px 40px 0 0;
+      
+      a li {
+        padding: 8px 10px;
+        border-bottom: 1px solid $nearwhite;
+        color: $gray;
+        
+        &.first {
+          border-top: 1px solid $nearwhite;
+        }
+        
+        &:hover {
+          background: $graywhite;
+          color: black;
+        }
+      }
+    }
+    
+    .design-main {
+      display: flex;
+      flex-direction: column;
+      min-width: 720px;
+    }
+  }
+  
+  section {
+    margin-bottom: 4rem;
+  }
+}
