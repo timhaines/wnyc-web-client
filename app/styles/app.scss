@@ -80,10 +80,11 @@ body:not(.simplified_wrapper):not(.container_stripped) > :not(
 @import 'liquid-fire-icons';
 @import 'error';
 
-@import 'design-base';
-@import 'design-chrome';
-@import 'design-layout';
-@import 'design-content';
+// DESIGN SYSTEM
+@import 'design/base';
+@import 'design/layout';
+@import 'design/nav';
+@import 'design/content';
 
 // LEGACY CODE
 @import 'legacy/home-compat';
