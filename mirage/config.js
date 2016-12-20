@@ -163,6 +163,8 @@ export default function() {
     return schema.users.first();
   });
   
+  this.post('/session', {access_token: 'secret', expires_in: 3600, token_type: 'bearer'});
+  
   this.patch('/user', (schema, request) => {
     if (!request.requestHeaders.Authorization) {
       return new Response(401);
