@@ -1,1 +1,15 @@
-{{account-card user=model isEditing=isEditing edit=(action 'edit')}}
+<div class="l-constrained account-info">
+  <h2 class="account-header">
+    <div class="account-avatar">
+      {{nypr-svg icon="user"}}
+    </div>
+    Hi {{model.givenName}}!
+  </h2>
+  
+  {{nypr-accounts/basic-card
+    user=model
+    authenticate=(action authenticate)}}
+    
+  {{nypr-accounts/password-card
+    changePassword=(action changePassword)}}
+</div>

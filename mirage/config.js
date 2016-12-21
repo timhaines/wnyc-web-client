@@ -176,4 +176,6 @@ export default function() {
     return user.update(JSON.parse(request.requestBody));
   });
   
+  this.delete('/user', () => new Response(204));
+  
 }
