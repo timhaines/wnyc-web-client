@@ -57,7 +57,7 @@ Router.map(function() {
     this.route('redirect', { path: '/'} );
   });
   
-  this.route('accounts');
+  this.route('my-account');
 
   // This is our catch all route that can render any existing page
   // from the django site. It will be used when there's nothing more

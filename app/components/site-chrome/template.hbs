@@ -145,8 +145,8 @@
           {{/if}}
 
           {{#if session.isAuthenticated}}
-            {{#link-to 'accounts' tagName='li' href="false" class="list-item list-item--nav" }}
-              {{link-to "My Account" 'accounts' class="inherit" preventDefault=false}}
+            {{#link-to 'my-account' tagName='li' href="false" class="list-item list-item--nav" }}
+              {{link-to "My Account" 'my-account' class="inherit" preventDefault=false}}
             {{/link-to}}
 
             <li class="list-item list-item--nav">
@@ -181,8 +181,8 @@
             {{/if}}
 
             {{#if session.isAuthenticated}}
-              {{#link-to 'accounts' tagName='li' href="false" class="list-item list-item--nav" }}
-                {{link-to "My Account" 'accounts' class="inherit" preventDefault=false}}
+              {{#link-to 'my-account' tagName='li' href="false" class="list-item list-item--nav" }}
+                {{link-to "My Account" 'my-account' class="inherit" preventDefault=false}}
               {{/link-to}}
 
               <li class="list-item list-item--nav">
