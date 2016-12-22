@@ -111,6 +111,23 @@ export default function() {
   });
 
   /*------------------------------------------------------------
+    auth microservice endpoints
+  --------------------------------------------------------------*/
+  let authEndpoint = '/';
+  let accessToken = {access_token: ""};
+  let userDetails = {username: "", attributes: {firstName:""}};
+  this.post(`${authEndpoint}/v1/session`, accessToken);
+  this.get(`${authEndpoint}/v1/session`, userDetails);
+  this.delete(`${authEndpoint}/v1/session`, userDetails);
+  this.put(`${authEndpoint}/v1/session`, accessToken);
+
+  this.post(`${authEndpoint}/v1/user`, {});
+  this.delete(`${authEndpoint}/v1/user`, new Response(204));
+
+
+
+
+  /*------------------------------------------------------------
     passthroughs
   --------------------------------------------------------------*/
 
@@ -140,25 +157,26 @@ export default function() {
     }
     return page || new Response(404);
   });
-  
+
   /*-------------------------------------------------------------
   auth microservice
   ---------------------------------------------------------------*/
-  
+
   this.urlPrefix = config.wnycAuthAPI;
-  
+
   this.post('/v1/password', {});
-  
+
   this.get('/v1/session', (schema, request) => {
     if (!request.requestHeaders.Authorization) {
       return new Response(401);
     }
     return schema.users.first();
   });
-  
+
   this.post('/v1/session', {access_token: 'secret', expires_in: 3600, token_type: 'bearer'});
-  
+
   this.patch('/v1/user', (schema, request) => {
+
     if (!request.requestHeaders.Authorization) {
       return new Response(401);
     }
@@ -168,9 +186,8 @@ export default function() {
     }
     return user.update(JSON.parse(request.requestBody));
   });
-  
+
   this.delete('/v1/user', () => new Response(204));
-  
+
   this.get('/v1/user/exists-by-attribute', {username: ''});
-  
 }

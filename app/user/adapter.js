@@ -11,5 +11,18 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     } else if (requestType.startsWith('find')) {
       return `${this.host}/v1/session`;
     }
-  }
+  },
+  normalizeErrorResponse(status, headers, payload) {
+    if (payload && typeof payload === 'object' && payload.error) {
+      return payload.error;
+    } else {
+      return [
+        {
+          status: `${status}`,
+          title: "The backend responded with an error",
+          detail: `${payload}`
+        }
+      ];
+    }
+  },
 });

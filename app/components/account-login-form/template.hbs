@@ -1,20 +1,25 @@
-<form class="account-form" {{action 'login' on=submit}}>
+{{#nypr-form
+  changeset=changeset
+  allowedKeys=allowedKeys
+  onSubmit=(action 'onSubmit')
+  onSuccess=(action 'onSuccess')
+  onFailure=(action 'onFailure')
+  formClass='account-form'
+  as |form|
+}}
   <h2 class="account-form-heading">Log in to WNYC</h2>
 
-  <button class="account-form-btn fb-btn"><i class="fa fa-facebook-official fa-2x"></i> Log in with Facebook</button>
-
-  <div placeholder="you@email.com" class="account-form-separator">or</div>
-
-  {{fancy-input
+  {{nypr-input
     label='Email'
-    type='email'
+    type='text'
     placeholder='you@email.com'
     fieldname='email'
     value=changeset.email
     errors=changeset.error.email.validation
+    submitted=form.status.tried
   }}
 
-  {{fancy-input
+  {{nypr-input
     label='Password'
     type='password'
     placeholder='Enter password'
@@ -23,7 +28,8 @@
     errors=changeset.error.password.validation
     helplinkUrl='/forgot'
     helplinkText='Forgot Password?'
+    submitted=form.status.tried
   }}
 
-  <button type="submit" class="account-form-btn" {{action 'validate' changeset}} disabled={{isProcessing}}>Log in</button>
-</form>
+  <button type="submit" class="account-form-btn" disabled={{form.status.processing}}>Log in</button>
+{{/nypr-form}}

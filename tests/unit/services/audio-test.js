@@ -85,7 +85,7 @@ test('can switch from on demand to stream and vice versa', function(assert) {
   let audio2 = DummyConnection.create({ url: streamURL  });
   let service = this.subject();
   let done = assert.async();
-  
+
   service.get('hifi.soundCache').cache(audio1);
   service.get('hifi.soundCache').cache(audio2);
 
@@ -224,14 +224,14 @@ test('segmented audio management', function(assert) {
     url: url1,
     duration: duration1
   });
-  
+
   let url2 = '/url2.mp3';
   let duration2 = 20 * ONE_MINUTE;
   let audio2 = DummyConnection.create({
     url: url2,
     duration: duration2
   });
-  
+
   let url3 = '/url3.mp3';
   let duration3 = 20 * ONE_MINUTE;
   let audio3 = DummyConnection.create({
@@ -334,7 +334,7 @@ test('episodes played from the queue do not continue to the next item until the 
 test('can play a segmented story all the way through more than once', function(assert) {
   let url1 = '/url1.mp3';
   let audio1 = DummyConnection.create({ url: url1 });
-  
+
   let url2 = '/url2.mp3';
   let audio2 = DummyConnection.create({ url: url2 });
   let episode = server.create('story', {
@@ -381,7 +381,7 @@ test('service records a listen when a story is played', function(assert) {
     site_id: story.siteId,
     current_position: 0
   };
-    
+
   Ember.run(() => {
     service.play(story.id).then(() => {
       let forwardPosition = {current_position: service.get('position')};
@@ -403,7 +403,7 @@ test('service records a listen when a story is played', function(assert) {
           assert.deepEqual(reportStub.getCall(4).args, ['pause', Object.assign(expected, pausePosition)], 'should have received proper attrs');
           assert.deepEqual(reportStub.getCall(5).args, ['resume', Object.assign(expected, pausePosition)], 'should have received proper attrs');
           assert.deepEqual(reportStub.getCall(6).args, ['finish', Object.assign(expected, finishedPosition)], 'should have received proper attrs');
-          
+
           // set_position is special case
           assert.deepEqual(reportStub.getCall(3).args, ['set_position', Object.assign(expected, setPosition)], 'current_position should be time when action happened, not target time');
           done();
@@ -428,7 +428,7 @@ test('service records a listen when a stream is played', function(assert) {
     current_show: { episode_pk: currentStory.id }
   });
   let audio = DummyConnection.create({ url: stream.attrs.urls.mp3[0] });
-  
+
   let expected = {
     audio_type: 'stream',
     cms_id: currentStory.id,
@@ -437,9 +437,9 @@ test('service records a listen when a stream is played', function(assert) {
     stream_id: stream.slug,
     current_position: 0
   };
-    
+
   service.get('hifi.soundCache').cache(audio);
-  
+
   Ember.run(() => {
     service.play(stream.slug).then(() => {
       service.pause();
