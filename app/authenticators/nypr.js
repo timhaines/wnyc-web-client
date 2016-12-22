@@ -3,5 +3,5 @@ import OAuth2PasswordGrantAuthenticator from 'ember-simple-auth/authenticators/o
 
 
 export default OAuth2PasswordGrantAuthenticator.extend({
-  serverTokenEndpoint: `${config.wnycAuthAPI}/session`
+  serverTokenEndpoint: `${config.wnycAuthAPI}/v1/session`
 });
