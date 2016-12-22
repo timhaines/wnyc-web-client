@@ -21,7 +21,10 @@
   <div class="aligncenter text--small">
     <p>
       Need help? Contact us using our <a href="zendesk.com">contact form</a> or call us at <a href="tel:646-829-4000">646-829-4000</a>.<br />
-      <button class="btn--link btn--smalltext" {{action (action (mut disableModal) true)}}>Disable my online account</button>
+      <button
+        data-test-selector="disable-account"
+        class="btn--link btn--smalltext"
+        {{action (action (mut disableModal) true)}}>Disable my online account</button>
     </p>
   </div>
 </div>
