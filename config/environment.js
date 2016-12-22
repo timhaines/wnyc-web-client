@@ -106,6 +106,7 @@ module.exports = function(environment) {
     showsAPIKey: "hummingbird",
     moreShowsDiscoverStation: "archived-shows",
     moreShowsAPIKey: "mammoth",
+    wnycAuthAPI: process.env.AUTH_SERVICE,
     wnycAccountRoot: process.env.WNYC_ACCOUNT_ROOT,
     wnycEtagAPI: process.env.WNYC_ETAG_API,
     wnycStaticURL: process.env.WNYC_STATIC_URL,
@@ -179,6 +180,7 @@ module.exports = function(environment) {
     ENV.wnycStaticURL = 'http://example.com/static';
     ENV.wnycURL = '//example.com';
     ENV.wnycBetaURL = 'http://example.com';
+    ENV.wnycAuthAPI = 'http://example.com';
   }
 
   if (environment === 'production') {

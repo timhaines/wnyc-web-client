@@ -66,6 +66,8 @@ Router.map(function() {
     this.route('index', { path: '/'});
     this.route('about');  
   });
+  
+  this.route('my-account');
 
   // This is our catch all route that can render any existing page
   // from the django site. It will be used when there's nothing more

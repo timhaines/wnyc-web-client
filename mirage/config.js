@@ -18,9 +18,13 @@ export default function() {
   this.get(`${baseUrl}/api/v1/browser_id/`, {success: true});
   this.get(`${baseUrl}/api/v1/list/comments/24/:storyId/`, 'comment');
   this.get(`${baseUrl}/api/v1/whats_on/`);
+  this.get('/api/v1/whats_on/');
   this.get(`${baseUrl}/api/v1/whats_on/:slug`, 'whats-on');
+  this.get('/api/v1/whats_on/:slug', 'whats-on');
   this.get(`${baseUrl}/api/v1/list/streams/`);
+  this.get('/api/v1/list/streams/');
   this.get(`${baseUrl}/api/v1/list/streams/:slug`, 'stream');
+  this.get('/api/v1/list/streams/:slug', 'stream');
 
   this.get(`/api/v1/story/:slug`, function(schema, request) { // backbone makes this ajax request to the audio
     let results = schema.discoverStories.all().models.filter(function(d) {
@@ -136,4 +140,37 @@ export default function() {
     }
     return page || new Response(404);
   });
+  
+  /*-------------------------------------------------------------
+  auth microservice
+  ---------------------------------------------------------------*/
+  
+  this.urlPrefix = config.wnycAuthAPI;
+  
+  this.post('/v1/password', {});
+  
+  this.get('/v1/session', (schema, request) => {
+    if (!request.requestHeaders.Authorization) {
+      return new Response(401);
+    }
+    return schema.users.first();
+  });
+  
+  this.post('/v1/session', {access_token: 'secret', expires_in: 3600, token_type: 'bearer'});
+  
+  this.patch('/v1/user', (schema, request) => {
+    if (!request.requestHeaders.Authorization) {
+      return new Response(401);
+    }
+    let user = schema.users.first();
+    if (!user) {
+      return new Response(500, {error: {code: 'BadTest', message: 'No users found'}});
+    }
+    return user.update(JSON.parse(request.requestBody));
+  });
+  
+  this.delete('/v1/user', () => new Response(204));
+  
+  this.get('/v1/user/exists-by-attribute', {username: ''});
+  
 }
