@@ -8,7 +8,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   buildURL(modelName, id, snapshot, requestType/*, query*/) {
     if (/createRecord|updateRecord|deleteRecord/.test(requestType)) {
       return `${this.host}/v1/user`;
-    } else if (requestType.startsWith('find')) {
+    } else if (requestType.startsWith('query')) {
       return `${this.host}/v1/session`;
     }
   },

@@ -163,9 +163,9 @@ export default function() {
   ---------------------------------------------------------------*/
 
   this.urlPrefix = config.wnycAuthAPI;
-
+  
   this.post('/v1/password', {});
-
+  
   this.get('/v1/session', (schema, request) => {
     if (!request.requestHeaders.Authorization) {
       return new Response(401);
