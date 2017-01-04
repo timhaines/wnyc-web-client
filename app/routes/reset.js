@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Route from 'ember-route';
 
-export default Ember.Route.extend({
-  titleToken: 'Sign In',
+export default Route.extend({
+  queryParams: ['email', 'confirmation'],
+  email: null,
+  confirmation: null,
   setupController() {
     this.send('disableChrome');
   },

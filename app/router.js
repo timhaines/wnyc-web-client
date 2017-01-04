@@ -55,25 +55,18 @@ Router.map(function() {
     this.route('index', { path: 'playlist'});
     this.route('redirect', { path: '/'} );
   });
-  
-  this.route('accounts', function() {
-    this.route('login');
-    this.route('signup');
-  });
 
   this.route('design', function() {
     this.route('index', { path: '/'});
-    this.route('about');  
+    this.route('about');
   });
-  
+
   this.route('profile');
 
-  this.route('accounts', function() {
-    this.route('login');
-    this.route('signup');
-    this.route('forgot');
-    this.route('reset');
-  });
+  this.route('login');
+  this.route('signup');
+  this.route('forgot');
+  this.route('reset');
 
   // This is our catch all route that can render any existing page
   // from the django site. It will be used when there's nothing more
