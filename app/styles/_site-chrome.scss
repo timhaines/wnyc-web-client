@@ -183,6 +183,11 @@
     }
   }
 
+  .user-nav-link {
+    height: 100%;
+    display: inline-block;
+    margin: 0 7px;
+  }
   .user-nav-signup {
     display: none;
   }
@@ -199,7 +204,7 @@
   }
   @include mq($medium-and-up) {
     .user-nav-signup {
-      display: block;
+      display: inline-block;
     }
   }
 }
