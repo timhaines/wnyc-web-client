@@ -4,7 +4,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
-  
+
   model() {
     return this.get('currentUser.user');
   }
