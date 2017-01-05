@@ -34,6 +34,7 @@
     height: 83px;
   }
 
+  .profile &,
   .chrome-disabled & {
     margin-bottom: 0;
   }
@@ -506,6 +507,7 @@
 .sitechrome-page-content-area {
   position: relative;
 
+  .profile &,
   .chrome-disabled & {
     padding-top: 25px;
     background-color: $nearwhite;
