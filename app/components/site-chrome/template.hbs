@@ -113,23 +113,23 @@
           {{/if}}
         </li>
 
-        {{#link-to 'stream' tagName='li' href=false class="list-item list-item--nav" }}
+        {{#link-to 'stream' tagName='li' href=false class="list-item list-item--nav"}}
           {{link-to 'All Streams' 'stream' class="inherit" preventDefault=false}}
         {{/link-to}}
 
-        {{#link-to 'schedule-redirect' current-when="schedule" tagName='li' href="false" class="list-item list-item--short" }}
+        {{#link-to 'schedule-redirect' current-when="schedule" tagName='li' href=false class="list-item list-item--short"}}
           {{link-to 'Schedule' 'schedule-redirect' class="inherit" preventDefault=false}}
         {{/link-to}}
 
-        {{#link-to 'shows' current-when="shows show" tagName="li" href=false class="list-item list-item--nav" }}
+        {{#link-to 'shows' current-when="shows show" tagName="li" href=false class="list-item list-item--nav"}}
           {{link-to 'Shows' 'shows' class="inherit" preventDefault=false}}
         {{/link-to}}
 
-        {{#link-to 'topics' current-when='topics tag' tagName='li' href="false" class="list-item list-item--nav" }}
+        {{#link-to 'topics' current-when='topics tag' tagName='li' href=false class="list-item list-item--nav"}}
           {{link-to 'Topics' 'topics' class="inherit" preventDefault=false}}
         {{/link-to}}
 
-        {{#link-to 'discover.start' current-when="discover" tagName='li' href="false" class="list-item list-item--nav"}}
+        {{#link-to 'discover.start' current-when="discover" tagName='li' href=false class="list-item list-item--nav"}}
           {{#link-to 'discover.start' class="inherit" preventDefault=false}}
             <span class="new">NEW!</span>
             Discover
@@ -138,12 +138,12 @@
 
         {{#unless media.isLargeAndUp}}
 
-          {{#link-to 'djangorendered' 'search/' tagName='li' href=false class="list-item list-item--nav" }}
+          {{#link-to 'djangorendered' 'search/' tagName='li' href=false class="list-item list-item--nav"}}
             {{link-to 'Search' 'djangorendered' 'search/' class="inherit" preventDefault=false}}
           {{/link-to}}
 
           {{#if features.autoplayPrefs}}
-            {{#link-to 'settings' tagName='li' href=false class="list-item list-item--nav" }}
+            {{#link-to 'settings' tagName='li' href=false class="list-item list-item--nav"}}
               {{link-to 'Settings' 'settings' class="inherit" preventDefault=false}}
             {{/link-to}}
           {{/if}}
@@ -162,7 +162,7 @@
           <ul class="list list--noborder flush alignright">
             {{!-- <div class="h5 text--heavy alignright"> --}}
             {{#if features.autoplayPrefs}}
-              {{#link-to 'settings' tagName='li' href=false class="list-item list-item--nav" }}
+              {{#link-to 'settings' tagName='li' href=false class="list-item list-item--nav"}}
                 {{link-to 'Settings' 'settings' class="inherit" preventDefault=false}}
               {{/link-to}}
             {{/if}}
