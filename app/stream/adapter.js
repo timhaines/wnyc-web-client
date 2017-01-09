@@ -1,4 +1,4 @@
-import config from 'overhaul/config/environment';
+import config from 'wnyc-web-client/config/environment';
 import DS from 'ember-data';
 import Ember from 'ember';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';

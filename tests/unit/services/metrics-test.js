@@ -1,5 +1,5 @@
 // TODO: probably unnecessary test suite
-import config from 'overhaul/config/environment';
+import config from 'wnyc-web-client/config/environment';
 import { moduleFor } from 'ember-qunit';
 import test from 'ember-sinon-qunit/test-support/test';
 
