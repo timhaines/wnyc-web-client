@@ -62,10 +62,10 @@ export default Route.extend(ApplicationRouteMixin, {
       this.controllerFor('application').set('headerDonateChunk', donateChunk);
     },
     disableChrome() {
-      this.controller.set('chromeDisabled', true);
+      this.controllerFor('application').set('chromeDisabled', true);
     },
     enableChrome() {
-      this.controller.set('chromeDisabled', false);
+      this.controllerFor('application').set('chromeDisabled', false);
     }
   },
 
