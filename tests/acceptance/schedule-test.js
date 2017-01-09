@@ -3,7 +3,11 @@ import moduleForAcceptance from 'wnyc-web-client/tests/helpers/module-for-accept
 import { faker } from 'ember-cli-mirage';
 import moment from 'moment';
 
-moduleForAcceptance('Acceptance | schedule');
+moduleForAcceptance('Acceptance | schedule', {
+  beforeEach() {
+    server.create('stream');
+  }
+});
 
 
 test('visiting /schedule redirects to todays schedule url', function(assert) {
