@@ -36,14 +36,14 @@ export default Ember.Route.extend(PlayParamMixin, {
       });
     });
   },
-  afterModel(model) {
+  afterModel(model, transition) {
     let metrics = get(this, 'metrics');
     let dataPipeline = get(this, 'dataPipeline');
     let {containers:action, title:label} = get(model, 'story.analytics');
     let nprVals = get(model, 'story.nprAnalyticsDimensions');
 
     if (get(model, 'story.extendedStory.headerDonateChunk')) {
-      this.send('updateDonateChunk', get(model, 'story.extendedStory.headerDonateChunk'));
+      transition.send('updateDonateChunk', get(model, 'story.extendedStory.headerDonateChunk'));
     }
 
     // google analytics

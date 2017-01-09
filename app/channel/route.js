@@ -31,14 +31,14 @@ export default Route.extend(PlayParamMixin, {
     })
     .catch(e => retryFromServer(e, listingSlug.replace(/\/*$/, '/')));
   },
-  afterModel({ channel }) {
+  afterModel({ channel }, transition) {
     let channelTitle = get(channel, 'title');
     let metrics = get(this, 'metrics');
     let dataPipeline = get(this, 'dataPipeline');
     let nprVals = get(channel, 'nprAnalyticsDimensions');
 
     if (channel.get('headerDonateChunk')) {
-      this.send('updateDonateChunk', channel.get('headerDonateChunk'));
+      transition.send('updateDonateChunk', channel.get('headerDonateChunk'));
     }
 
     // google analytics
