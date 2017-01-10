@@ -67,6 +67,14 @@ export default Ember.Route.extend(PlayParamMixin, {
       site_id: get(model, 'story.siteId'),
       client: config.clientSlug
     });
+    
+    // data pipeline
+    dataPipeline.reportItemView({
+      cms_id: get(model, 'story.id'),
+      item_type: get(model, 'story.itemType'),
+      site_id: get(model, 'story.siteId'),
+      client: config.clientSlug
+    });
   },
   
   actions: {
