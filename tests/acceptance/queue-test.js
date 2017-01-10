@@ -57,11 +57,13 @@ test('Queue should sort when you drag an item', function(assert) {
     assert.equal(queuePage.stories(2).title(), 'Story 1', 'story 1 should be second');
   });
 
-  // drag story 0 below story 1
-  drag('mouse',
-    `.queueitem:contains(Story 0)`,
-    function() {return {dy: 400, dx:0};}
-  );
+  run(() => {
+    // drag story 0 below story 1
+    drag('mouse',
+      `.queueitem:contains(Story 0)`,
+      function() {return {dy: 400, dx:0};}
+    );
+  });
 
   andThen(function() {
     assert.equal(queuePage.stories(1).title(), 'Story 1', 'story 1 should be first after dragging');
