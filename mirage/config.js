@@ -172,11 +172,12 @@ export default function() {
     }
     return schema.users.first();
   });
-
   this.post('/v1/session', {access_token: 'secret', expires_in: 3600, token_type: 'bearer'});
-
+  this.put('/v1/session', {access_token: 'secret', expires_in: 3600, token_type: 'bearer'});
+  this.delete('/v1/session', {});
+  
+  this.post('/v1/user', {});
   this.patch('/v1/user', (schema, request) => {
-
     if (!request.requestHeaders.Authorization) {
       return new Response(401);
     }
@@ -186,8 +187,7 @@ export default function() {
     }
     return user.update(JSON.parse(request.requestBody));
   });
-
   this.delete('/v1/user', () => new Response(204));
-
   this.get('/v1/user/exists-by-attribute', {username: ''});
+  
 }
