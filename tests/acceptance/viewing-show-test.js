@@ -7,6 +7,9 @@ import config from 'wnyc-web-client/config/environment';
 import { authenticateSession } from 'wnyc-web-client/tests/helpers/ember-simple-auth';
 
 moduleForAcceptance('Acceptance | Django Page | Show Page', {
+  beforeEach() {
+    server.create('stream');
+  },
   afterEach() {
     resetHTML();
   }
