@@ -155,8 +155,8 @@
             </li>
 
           {{else}}
-            {{#link-to 'accounts.login' tagName='li' href="false" class="list-item list-item--nav" }}
-              {{link-to 'Sign In' 'accounts.login' class="inherit" preventDefault=false}}
+            {{#link-to 'login' tagName='li' href="false" class="list-item list-item--nav" }}
+              {{link-to 'Sign In' 'login' class="inherit" preventDefault=false}}
             {{/link-to}}
 
           {{/if}}
@@ -190,8 +190,8 @@
                 <button class="btn--blank" data-test-selector="logout" {{action 'logout'}}>Sign Out</button>
               </li>
             {{else}}
-              {{#link-to 'accounts.login' tagName='li' href="false" class="list-item list-item--nav" }}
-                {{link-to "Sign In" 'accounts.login' class="inherit" preventDefault=false}}
+              {{#link-to 'login' tagName='li' href="false" class="list-item list-item--nav" }}
+                {{link-to "Sign In" 'login' class="inherit" preventDefault=false}}
               {{/link-to}}
             {{/if}}
           </ul>
