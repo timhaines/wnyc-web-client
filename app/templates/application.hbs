@@ -8,7 +8,7 @@
     {{/unless}}
   {{/nypr-mini-chrome}}
   
-{{#else if (not chromeDisabled)}}
+{{else if (not chromeDisabled)}}
 
   {{#site-chrome headerDonateChunk=headerDonateChunk beta=beta isHomepage=isHomepage currentPath=currentPath}}
     {{#unless error}}
