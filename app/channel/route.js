@@ -40,6 +40,9 @@ export default Route.extend(PlayParamMixin, {
     if (channel.get('headerDonateChunk')) {
       transition.send('updateDonateChunk', channel.get('headerDonateChunk'));
     }
+    if (channel.get('altLayout')) {
+      transition.send('setMiniChrome', true);
+    }
 
     // google analytics
     metrics.trackEvent('GoogleAnalytics', {

@@ -1,4 +1,15 @@
-{{#unless chromeDisabled}}
+{{#if miniChrome}}
+
+  {{#nypr-mini-chrome}}
+    {{#unless error}}
+      {{outlet}}
+    {{else}}
+      {{error-page error=error}}
+    {{/unless}}
+  {{/nypr-mini-chrome}}
+  
+{{#else if (not chromeDisabled)}}
+
   {{#site-chrome headerDonateChunk=headerDonateChunk beta=beta isHomepage=isHomepage currentPath=currentPath}}
     {{#unless error}}
       {{outlet}}
@@ -30,8 +41,9 @@
     {{/x-modal}}
     {{/if}}
   {{/liquid-bind}}
+  
 {{else}}
 
   {{outlet}}
   
-{{/unless}}
+{{/if}}

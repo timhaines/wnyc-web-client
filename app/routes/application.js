@@ -66,6 +66,9 @@ export default Route.extend(ApplicationRouteMixin, {
     },
     enableChrome() {
       this.controllerFor('application').set('chromeDisabled', false);
+    },
+    setMiniChrome(val) {
+      this.controllerFor('application').set('miniChrome', val);
     }
   },
 
