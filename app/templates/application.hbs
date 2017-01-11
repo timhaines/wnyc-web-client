@@ -7,7 +7,7 @@
       {{error-page error=error}}
     {{/unless}}
   {{/nypr-mini-chrome}}
-  
+
 {{else if (not chromeDisabled)}}
 
   {{#site-chrome headerDonateChunk=headerDonateChunk beta=beta isHomepage=isHomepage currentPath=currentPath}}
@@ -17,7 +17,7 @@
       {{error-page error=error}}
     {{/unless}}
   {{/site-chrome}}
-  
+
   {{#liquid-unless showPlayer class="player-wrapper"}}
     <div class="l-fixed l-lowright">
     {{persistent-player.queue-button
@@ -41,9 +41,9 @@
     {{/x-modal}}
     {{/if}}
   {{/liquid-bind}}
-  
+
 {{else}}
 
   {{outlet}}
-  
+
 {{/if}}

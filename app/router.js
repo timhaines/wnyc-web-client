@@ -62,6 +62,7 @@ Router.map(function() {
 
   this.route('login');
   this.route('signup');
+  this.route('validate');
   this.route('forgot');
   this.route('reset');
 
