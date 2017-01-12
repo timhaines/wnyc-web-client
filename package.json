@@ -98,7 +98,7 @@
     "loader.js": "^4.0.10",
     "morgan": "^1.6.1",
     "nypr-ui": "github:nypublicradio/nypr-ui",
-    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#683d986c767381d50a75923795356afaad255834"
+    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#c18a15f"
   },
   "ember-addon": {
     "paths": [
