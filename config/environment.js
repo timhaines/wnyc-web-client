@@ -106,6 +106,7 @@ module.exports = function(environment) {
     showsAPIKey: "hummingbird",
     moreShowsDiscoverStation: "archived-shows",
     moreShowsAPIKey: "mammoth",
+    wnycAdminRoot: process.env.WNYC_ADMIN_ROOT,
     wnycAuthAPI: process.env.AUTH_SERVICE,
     wnycAccountRoot: process.env.WNYC_ACCOUNT_ROOT,
     wnycEtagAPI: process.env.WNYC_ETAG_API,
@@ -181,6 +182,7 @@ module.exports = function(environment) {
 
     ENV.wnycAPI = 'http://example.com';
     ENV.wnycAccountRoot = 'http://example.com/account';
+    ENV.wnycAdminRoot = 'http://admin.example.com';
     ENV.wnycEtagAPI = 'http://example.com/api/v1/browser_id/';
     ENV.wnycStaticURL = 'http://example.com/static';
     ENV.wnycURL = '//example.com';
