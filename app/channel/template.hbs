@@ -4,25 +4,14 @@
       <div id="leaderboard" class="aligncenter"></div>
     {{/google-ad}}
 
-    {{#if (not model.channel.altLayout)}}
-      {{#if model.channel.hasMarquee}}
-        {{x-marquee model=model.channel user=model.user}}
-      {{else}}
-        {{#if model.channel.featured}}
-          {{channel-header model=model.channel user=model.user}}
-        {{else}}
-          {{channel-header model=model.channel user=model.user classNames='flush'}}
-        {{/if}}
-      {{/if}}
-    {{/if}}
-    
     {{#if model.channel.altLayout}}
       {{#alt-channel-layout
         navSlugTransition=(action 'navSlugTransition')
         defaultSlug=defaultSlug
         navRoot=navRoot
         channel=model.channel
-        user=model.user item=model.channel.featured}}
+        user=model.user
+        item=model.channel.featured}}
 
         {{outlet}}
 
@@ -33,6 +22,11 @@
 
       {{/alt-channel-layout}}
     {{else}}
+      {{#if model.channel.hasMarquee}}
+        {{x-marquee model=model.channel user=model.user}}
+      {{else}}
+        {{channel-header model=model.channel user=model.user classNames=(unless model.channel.featured 'flush')}}
+      {{/if}}
 
     <div class="l-constrained">
       <main class="l-col2of3">
