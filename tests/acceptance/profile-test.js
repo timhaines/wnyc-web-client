@@ -67,7 +67,7 @@ test('can view & update attrs', function(assert) {
     };
   });
    
-  authenticateSession(this.application, {access_token: 'foo'});
+  authenticateSession(this.application, {access_token: 'secret'});
   visit('/profile');
   
   andThen(function() {
@@ -104,6 +104,48 @@ test('can view & update attrs', function(assert) {
     assert.equal(findWithAssert('input[name=preferredUsername]').val(), USER, 'displays new username');
     assert.equal(findWithAssert('input[name=email]').val(), EMAIL, 'displays new email');
     assert.equal(findWithAssert('input[name=password]').val(), '********', 'displays password asterisks');
+  });
+});
+
+test('using bad password to update email shows error', function(assert) {
+  const EMAIL = 'wwwww@ww.ww';
+  const PW = '1234567890';
+  
+  server.create('user');
+  server.post(`${config.wnycAuthAPI}/v1/session`, () => {
+    return new Response(401, {}, {
+      "error": {
+        "code": "UnauthorizedAccess", 
+        "message": "Incorrect username or password."
+      }
+    });
+  });
+  
+  authenticateSession(this.application, {access_token: 'foo'});
+  visit('/profile');
+  
+  andThen(function() {
+    click('.nypr-basic-info [data-test-selector="edit-button"]');
+  });
+  
+  andThen(function() {
+    fillIn('input[name=email]', EMAIL);
+    click('input[name=email]');
+    fillIn('input[name=confirmEmail]', EMAIL);
+  });
+  
+  click('.nypr-basic-info [data-test-selector="save"]');
+  
+  andThen(function() {
+    fillIn('[name=passwordForEmailChange]', PW);
+    find('[name=passwordForEmailChange]').focusout();
+    click('[data-test-selector=check-pw]');
+  });
+  
+  andThen(function() {
+    assert.equal(findWithAssert('.nypr-input-error').length, 1);
+    assert.equal(find('.nypr-input-error').text().trim(), 'Incorrect username or password.');
+    assert.equal(findWithAssert('#passwordForEmailChange').val(), PW, 'old password should still be there');
   });
 });
 
