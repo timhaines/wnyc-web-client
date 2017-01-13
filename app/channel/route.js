@@ -72,7 +72,9 @@ export default Route.extend(PlayParamMixin, {
       channelType: this.routeName,
       navRoot: get(this, 'listingSlug'),
       defaultSlug: navSlug,
-      model
+      model,
+      session: get(this, 'session'),
+      adminURL: config.wnycAccountRoot
     });
   },
 
