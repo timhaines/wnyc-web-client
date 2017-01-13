@@ -2,6 +2,7 @@ import SessionService from 'ember-simple-auth/services/session';
 import config from 'wnyc-web-client/config/environment';
 import RSVP from 'rsvp';
 import fetch from 'fetch';
+import getOwner from 'ember-owner/get';
 
 export default SessionService.extend({
   syncBrowserId(report = true) {
@@ -17,6 +18,11 @@ export default SessionService.extend({
 
     return getBrowserId()
       .then( ({ browser_id }) => this.set('data.browserId', browser_id));
+  },
+  
+  verify(email, password) {
+    let authenticator = getOwner(this).lookup('authenticator:nypr');
+    return authenticator.authenticate(email, password);
   }
 });
 
