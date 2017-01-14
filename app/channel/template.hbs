@@ -6,6 +6,7 @@
 
     {{#if model.channel.altLayout}}
       {{#alt-channel-layout
+        type=alt-channel
         navSlugTransition=(action 'navSlugTransition')
         defaultSlug=defaultSlug
         navRoot=navRoot
@@ -15,7 +16,7 @@
 
         {{outlet}}
 
-        {{page-numbers 
+        {{page-numbers
           currentPage=pageNumbers.page
           totalPages=pageNumbers.totalPages
           action="pageNumberClicked"}}
@@ -55,7 +56,7 @@
 
         {{outlet}}
 
-        {{page-numbers 
+        {{page-numbers
           currentPage=pageNumbers.page
           totalPages=pageNumbers.totalPages
           action="pageNumberClicked"}}
