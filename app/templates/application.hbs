@@ -6,7 +6,7 @@
       {{error-page error=error}}
     {{/unless}}
   {{/site-chrome}}
-{{else}}
+{{else if (not chromeDisabled)}}
   {{#nypr-mini-chrome}}
     {{#unless error}}
       {{outlet}}
@@ -27,7 +27,16 @@
     isOpenModal=modal}}
   </div>
 {{else}}
+  {{persistent-player
+    showModal=(action 'showModal')
+    closeModal=(action 'closeModal')
+    isOpenModal=modal}}
+{{/liquid-unless}}
 
-  {{outlet}}
-
-{{/if}}
+{{#liquid-bind modal class="modal-wrapper" as |thisModal|}}
+  {{#if thisModal}}
+  {{#x-modal closeModal=(action 'closeModal')}}
+    {{component thisModal}}
+  {{/x-modal}}
+  {{/if}}
+{{/liquid-bind}}

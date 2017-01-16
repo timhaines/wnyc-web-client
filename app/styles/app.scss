@@ -85,15 +85,12 @@ body:not(.simplified_wrapper):not(.container_stripped) {
 @import 'error';
 @import 'story-tease';
 @import 'alt-channel';
-<<<<<<< HEAD
 
 // DESIGN SYSTEM
 @import 'design/base';
 @import 'design/layout';
 @import 'design/nav';
 @import 'design/content';
-=======
->>>>>>> alt-channel
 
 // LEGACY CODE
 @import 'legacy/home-compat';
