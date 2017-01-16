@@ -70,7 +70,7 @@
     "ember-fetch": "1.3.0",
     "ember-getowner-polyfill": "1.0.1",
     "ember-hifi": "nypublicradio/ember-hifi#master",
-    "ember-holygrail-layout": "^0.1.3",
+    "ember-holygrail-layout": "nypublicradio/ember-holygrail-layout#master",
     "ember-load-initializers": "^0.5.1",
     "ember-metrics": "0.7.0",
     "ember-modal-dialog": "0.9.0",
@@ -97,8 +97,8 @@
     "liquid-fire": "0.26.4",
     "loader.js": "^4.0.10",
     "morgan": "^1.6.1",
-    "nypr-ui": "github:nypublicradio/nypr-ui",
-    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#a9804f2401dd70a041f80cdd05d81c4f812a14ed"
+    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#a9804f2401dd70a041f80cdd05d81c4f812a14ed",
+    "nypr-ui": "github:nypublicradio/nypr-ui"
   },
   "ember-addon": {
     "paths": [

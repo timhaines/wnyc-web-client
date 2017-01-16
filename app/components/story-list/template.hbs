@@ -1,8 +1,8 @@
-<ul class="list {{if altLayout 'list--borderbottom' 'list--noborder'}}">
+<ul class="list list--borderbottom">
   {{#each model.teaseList as |item|}}
   <li class="list-item">
     {{story-tease
-      altLayout=altLayout
+      flipped=flipTease
       parentTitle=parentTitle
       isStaff=session.data.isStaff
       adminURL=adminURL

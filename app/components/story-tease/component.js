@@ -25,7 +25,7 @@ export default Component.extend({
   isFancyFeatured:    and('item.largeTeaseLayout', 'item.imageMain', 'isFeatured', 'media.isSmallAndUp'),
 
   tagName:            'article',
-  classNameBindings:  ['featuredClasses', 'altChannel'],
+  classNameBindings:  ['featuredClasses', 'fullScreen'],
   classNames:         ['story-tease'],
 
   itemId: computed('isLive', 'streamSlug', 'item.id', function() {
@@ -56,6 +56,13 @@ export default Component.extend({
     let parentTitle = get(this, 'parentTitle');
     let brandTitle = get(this, 'item.headers.brand.title');
     return parentTitle !== brandTitle;
+  }),
+  playButton: computed('isFeatured', 'flipped', function() {
+    if (this.get('isFeatured') || this.get('flipped')) {
+      return 'blue-boss';
+    } else {
+      return 'blue-minion';
+    }
   }),
   endtimeLabel: computed('endtime', function() {
     const endtime = get(this, 'endtime');

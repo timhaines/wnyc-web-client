@@ -1,15 +1,4 @@
-{{#if miniChrome}}
-
-  {{#nypr-mini-chrome}}
-    {{#unless error}}
-      {{outlet}}
-    {{else}}
-      {{error-page error=error}}
-    {{/unless}}
-  {{/nypr-mini-chrome}}
-
-{{else if (not chromeDisabled)}}
-
+{{#unless miniChrome}}
   {{#site-chrome headerDonateChunk=headerDonateChunk beta=beta isHomepage=isHomepage currentPath=currentPath}}
     {{#unless error}}
       {{outlet}}
@@ -17,31 +6,26 @@
       {{error-page error=error}}
     {{/unless}}
   {{/site-chrome}}
+{{else}}
+  {{#nypr-mini-chrome}}
+    {{#unless error}}
+      {{outlet}}
+    {{else}}
+      {{error-page error=error}}
+    {{/unless}}
+  {{/nypr-mini-chrome}}
+{{/unless}}
 
-  {{#liquid-unless showPlayer class="player-wrapper"}}
-    <div class="l-fixed l-lowright">
-    {{persistent-player.queue-button
-      isFloating=true
-      queueLength=audio.queue.items.length
-      showModal=(action 'showModal')
-      closeModal=(action 'closeModal')
-      isOpenModal=modal}}
-    </div>
-  {{else}}
-    {{persistent-player
-      showModal=(action 'showModal')
-      closeModal=(action 'closeModal')
-      isOpenModal=modal}}
-  {{/liquid-unless}}
 
-  {{#liquid-bind modal class="modal-wrapper" as |thisModal|}}
-    {{#if thisModal}}
-    {{#x-modal closeModal=(action 'closeModal')}}
-      {{component thisModal}}
-    {{/x-modal}}
-    {{/if}}
-  {{/liquid-bind}}
-
+{{#liquid-unless showPlayer class="player-wrapper"}}
+  <div class="l-fixed l-lowright">
+  {{persistent-player.queue-button
+    isFloating=true
+    queueLength=audio.queue.items.length
+    showModal=(action 'showModal')
+    closeModal=(action 'closeModal')
+    isOpenModal=modal}}
+  </div>
 {{else}}
 
   {{outlet}}

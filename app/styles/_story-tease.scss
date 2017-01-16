@@ -1,19 +1,30 @@
-.story-tease.alt-channel {
+.story-tease.full-screen {
   position: relative;
   text-align: center;
   padding: 150px 35%;
-  
+  max-height: 490px;
+
   @include flexbox((
     display: flex,
     flex-direction: column,
     justify-content: center,
     align-items: center
   ));
+
+  @media (max-width: 1200px) {
+    max-height: 100%;
+    padding: 150px 8% 50px;
+  }
 }
 
 .story-tease-floating-header {
   text-align: left;
   position: absolute;
   top: 25px;
-  left: 0;
+}
+
+.story-tease--flipped {
+  .h2 {
+    font-weight: normal;
+  }
 }
