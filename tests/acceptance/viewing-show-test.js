@@ -38,7 +38,7 @@ test('smoke test', function(assert) {
 });
 
 test('authenticated smoke test', function(assert) {
-  server.get(`${config.wnycAdminRoot}/api/v1/is_logged_in/`, {user: true});
+  server.get(`${config.wnycAdminRoot}/api/v1/is_logged_in/`, {user: model.user});
   server.create('user');
   let show = server.create('show', {
     id: 'shows/foo/',
