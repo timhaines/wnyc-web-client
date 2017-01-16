@@ -26,7 +26,8 @@ export default DS.Model.extend({
       }
       const chunk = chunks.compact().findBy('position', 'top');
       if (chunk) {
-        return chunk.content;
+        let text = chunk.content.replace(/\\x3C\/script>/g, '</script>');
+        return this.store.createRecord('django-page', { text });
       } else {
         return '';
       }
@@ -40,7 +41,8 @@ export default DS.Model.extend({
       }
       const chunk = chunks.compact().findBy('position', 'bottom');
       if (chunk) {
-        return chunk.content;
+        let text = chunk.content.replace(/\\x3C\/script>/g, '</script>');
+        return this.store.createRecord('django-page', { text });
       } else {
         return '';
       }
