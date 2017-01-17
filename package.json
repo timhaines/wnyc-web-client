@@ -97,7 +97,7 @@
     "liquid-fire": "0.26.4",
     "loader.js": "^4.0.10",
     "morgan": "^1.6.1",
-    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#a9804f2401dd70a041f80cdd05d81c4f812a14ed",
+    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#44fe234",
     "nypr-ui": "github:nypublicradio/nypr-ui"
   },
   "ember-addon": {
