@@ -70,7 +70,11 @@
     "ember-fetch": "1.3.0",
     "ember-getowner-polyfill": "1.0.1",
     "ember-hifi": "nypublicradio/ember-hifi#master",
+<<<<<<< HEAD
     "ember-holygrail-layout": "nypublicradio/ember-holygrail-layout#master",
+=======
+    "ember-holygrail-layout": "^0.1.4",
+>>>>>>> alt-channel
     "ember-load-initializers": "^0.5.1",
     "ember-metrics": "0.7.0",
     "ember-modal-dialog": "0.9.0",
