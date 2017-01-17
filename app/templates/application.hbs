@@ -4,7 +4,7 @@
   {{else}}
     {{error-page error=error}}
   {{/unless}}
-{{else if miniChrome}}  
+{{else if miniChrome}}
   {{#nypr-mini-chrome}}
     {{#unless error}}
       {{outlet}}
@@ -21,6 +21,7 @@
     {{/unless}}
   {{/site-chrome}}
 {{/if}}
+
 
 {{#liquid-unless showPlayer class="player-wrapper"}}
   <div class="l-fixed l-lowright">
