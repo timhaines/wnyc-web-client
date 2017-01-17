@@ -8,19 +8,13 @@
 </div>
 {{/if}}
 
-{{#if hasBlock}}
-<div class="story-tease-floating-header">
-  {{yield}}
-</div>
-{{/if}}
-
 {{#if isFeatured}}
   <div class="text text--small text--upper text--heavy text--spacing nudge text--white {{if isFancyFeatured 'text--white'}}">
     <p>{{status}}</p>
   </div>
 {{/if}}
 
-<div class="flag {{if flipped 'story-tease--flipped'}} {{if (not flipped) 'flag--rev'}} flush">
+<div class="flag {{if flipped 'story-tease--flipped flag--med'}} {{if (not flipped) 'flag--rev'}} flush">
 
   {{#if flipped}}
   <a href={{item.url}} class="flag-image link--nodecor middle-narrow-up">
