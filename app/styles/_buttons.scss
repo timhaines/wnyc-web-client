@@ -839,7 +839,7 @@
   }
   svg .inner {
     fill: $color;
-  }  
+  }
 }
 
 @mixin gray-hollow-svg-hover($color) {
@@ -848,7 +848,7 @@
   }
   svg .inner {
     fill: rgba($color, 1);
-  }  
+  }
 }
 
 @mixin gray-svg {
@@ -979,11 +979,7 @@
   @include thickbtn;
 
   &.queue-button--fancyfeature {
-    @include gray-btn-jshover;
-
-    @include mq($small-and-up) {
-      @include white-btn-jshover;
-    }
+    @include white-btn-jshover;
   }
 
   &.queue-button--storyheader {
