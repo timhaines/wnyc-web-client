@@ -15,7 +15,6 @@
 .account-promo {
   width: 0;
   height: 0;
-
   &-blurb {
     display: none;
   }
@@ -193,6 +192,11 @@
     fill: white;
     width: 62px;
   }
+}
+
+.account-main {
+  @include mq($medium-and-up) {
+    padding-left: 318px;
 }
 
 .account-footer {
