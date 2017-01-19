@@ -197,6 +197,7 @@
 .account-main {
   @include mq($medium-and-up) {
     padding-left: 318px;
+  }
 }
 
 .account-footer {
