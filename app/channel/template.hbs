@@ -26,9 +26,9 @@
       {{/alt-channel-layout}}
     {{else}}
       {{#if model.channel.hasMarquee}}
-        {{x-marquee model=model.channel user=model.user}}
+        {{x-marquee model=model.channel adminURL=adminURL isStaff=session.data.isStaff}}
       {{else}}
-        {{channel-header model=model.channel user=model.user classNames=(unless model.channel.featured 'flush')}}
+        {{channel-header model=model.channel adminURL=adminURL isStaff=session.data.isStaff classNames=(unless model.channel.featured 'flush')}}
       {{/if}}
 
     <div class="l-constrained">
