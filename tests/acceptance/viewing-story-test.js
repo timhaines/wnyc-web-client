@@ -21,7 +21,7 @@ test('smoke test', function(assert) {
   djangoPage
     .bootstrap({id})
     .visit({id});
-    
+
   andThen(() => {
     assert.equal(currentURL(), `story/${story.slug}/`);
     assert.ok(find('.sitechrome-btn'), 'donate button should be the default');
@@ -36,7 +36,7 @@ test('view comments as regular user', function(assert) {
   djangoPage
     .bootstrap({id})
     .visit({id});
-    
+
   storyPage.clickShowComments();
 
   andThen(() => {
@@ -46,9 +46,8 @@ test('view comments as regular user', function(assert) {
 });
 
 test('view comments as staff user', function(assert) {
-  server.get(`${config.wnycAdminRoot}/api/v1/is_logged_in/`, {is_staff: true});
-  server.create('user');
-  
+  authenticateSession(this.application, {is_staff: true});
+
   let story = server.create('story');
   let id = `story/${story.slug}/`;
   server.create('django-page', {id, slug: story.slug});
@@ -68,11 +67,11 @@ test('story pages with a play param', function(assert) {
   djangoPage
     .bootstrap({id})
     .visit({id: id + `?play=${story.id}`});
-    
+
   andThen(function() {
     assert.equal(currentURL(), `story/${story.slug}/?play=${story.id}`);
-    assert.ok(Ember.$('.persistent-player').length, 'persistent player should be visible');
-    assert.equal(Ember.$('[data-test-selector=persistent-player-story-title]').text(), story.title, `${story.title} should be loaded in player UI`);
+    assert.ok(Ember.$('.nypr-player').length, 'persistent player should be visible');
+    assert.equal(Ember.$('[data-test-selector=nypr-player-story-title]').text(), story.title, `${story.title} should be loaded in player UI`);
   });
 });
 
@@ -93,11 +92,11 @@ test('visiting a story with a different donate URL', function(assert) {
     id,
     slug: donateStory.slug
   });
-  
+
   djangoPage
     .bootstrap({id})
     .visit({id});
-    
+
   andThen(function() {
     assert.equal(find('.foo').text(), 'donate to foo', 'donate chunk should match');
   });
@@ -116,7 +115,7 @@ moduleForAcceptance('Acceptance | Django Page | Story Detail Analytics', {
 test('metrics properly reports story attrs', function(assert) {
   let story = server.create('story');
   let id = `story/${story.slug}/`;
-  
+
   assert.expect(4);
   server.create('django-page', {id, slug: story.slug});
 
@@ -145,17 +144,17 @@ test('metrics properly reports story attrs', function(assert) {
     assert.deepEqual({category, action, cms_id, cms_type, label}, testObj, 'GET params match up');
     assert.deepEqual(postParams, testObj, 'POST params match up');
   });
-  
+
   server.post(`${config.wnycAccountRoot}/api/most/view/managed_item/:pk`, (schema, {params}) => {
     assert.equal(params.pk, story.id, 'reports a managed item view');
   });
-  
+
   window.ga = function(command) {
     if (command === 'npr.send') {
       assert.ok('called npr.send');
     }
   };
-  
+
   djangoPage
     .bootstrap({id})
     .visit({id});
