@@ -57,6 +57,7 @@ deployment:
             SENTRY_PROJECT: $DEMO_SENTRY_PROJECT
             SENTRY_EMBER_SOURCEMAPS_KEY: $DEMO_SENTRY_EMBER_SOURCEMAPS_KEY
             AUTH_SERVICE: $DEMO_AUTH_SERVICE
+            WNYC_ADMIN_ROOT: $DEMO_ADMIN_ROOT
   auth:
     branch: auth
     commands:
