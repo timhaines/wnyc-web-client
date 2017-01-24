@@ -219,4 +219,6 @@ export default function() {
     }
   });
 
+  // Test Coverage
+  this.passthrough('/write-coverage');
 }
