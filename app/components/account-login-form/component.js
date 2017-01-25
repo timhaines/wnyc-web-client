@@ -10,7 +10,6 @@ import service from 'ember-service/inject';
 export default Component.extend({
   resendEndpoint: `${ENV.wnycAuthAPI}/v1/confirm/resend`,
   session: service(),
-  routing: service('wnyc-routing'),
   allowedKeys: ['email', 'password'],
   triedUnverifiedAccount: false,
   init() {
@@ -26,9 +25,6 @@ export default Component.extend({
     onSubmit() {
       return this.authenticate(get(this, 'fields.email'), get(this, 'fields.password'));
     },
-    onSuccess() {
-      this.goHome();
-    },
     onFailure(e) {
       if (e) {
         if (get(e, 'errors.code') === 'AccountNotConfirmed') {
@@ -41,9 +37,6 @@ export default Component.extend({
   },
   authenticate(email, password) {
     return get(this, 'session').authenticate('authenticator:nypr', email, password);
-  },
-  goHome() {
-    get(this, 'routing').transitionTo('index');
   },
   applyErrorToChangeset(error, changeset) {
     if (error && error.code) {
