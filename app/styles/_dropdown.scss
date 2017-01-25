@@ -90,3 +90,15 @@
       border-top-color: white;
     }
 }
+
+.is-open {
+  > .dropdown-body {
+    opacity: 1;
+    pointer-events: all;
+    @include box-shadow(0px 0px 20px -5px rgba(0,0,0,0.15));
+    z-index: $zIndex--dropdownBody;
+    // for accessibility
+    visibility: visible;
+    @include transition(opacity $transition-timing ease, box-shadow $transition-timing ease ($transition-timing * 1.05));
+  }
+}

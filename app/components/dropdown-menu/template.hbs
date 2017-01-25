@@ -1,5 +1,6 @@
 {{! TODO: refactor out legacy JS dependency. see js/overhaul/story/dropdown.js }}
-<button class="btn js-dropdownClickable">Subscribe to the podcast ▾</button>
+{{#click-outside action=(action (mut isOpen) false)}}
+<button class="btn" {{action 'toggleDropdown'}}>Subscribe to the podcast ▾</button>
 <div class="dropdown-body">
   <div class="panel">
     {{#each items as |item|}}
@@ -11,3 +12,4 @@
   <!-- .panel -->
 </div>
 <!-- .dropdown-body -->
+{{/click-outside}}
