@@ -22,40 +22,26 @@
   {{/site-chrome}}
 {{/if}}
 
-{{#unless chromeDisabled}}
-  {{#site-chrome headerDonateChunk=headerDonateChunk beta=beta isHomepage=isHomepage currentPath=currentPath}}
-    {{#unless error}}
-      {{outlet}}
-    {{else}}
-      {{error-page error=error}}
-    {{/unless}}
-  {{/site-chrome}}
-
-  {{#liquid-unless showPlayer class="player-wrapper"}}
-    <div class="l-fixed l-lowright">
-    {{persistent-player.queue-button
-      isFloating=true
-      queueLength=audio.queue.items.length
-      showModal=(action 'showModal')
-      closeModal=(action 'closeModal')
-      isOpenModal=modal}}
-    </div>
-  {{else}}
-    {{persistent-player
-      showModal=(action 'showModal')
-      closeModal=(action 'closeModal')
-      isOpenModal=modal}}
-  {{/liquid-unless}}
-
-  {{#liquid-bind modal class="modal-wrapper" as |thisModal|}}
-    {{#if thisModal}}
-    {{#x-modal closeModal=(action 'closeModal')}}
-      {{component thisModal}}
-    {{/x-modal}}
-    {{/if}}
-  {{/liquid-bind}}
+{{#liquid-unless showPlayer class="player-wrapper"}}
+  <div class="l-fixed l-lowright">
+  {{persistent-player.queue-button
+    isFloating=true
+    queueLength=audio.queue.items.length
+    showModal=(action 'showModal')
+    closeModal=(action 'closeModal')
+    isOpenModal=modal}}
+  </div>
 {{else}}
+  {{persistent-player
+    showModal=(action 'showModal')
+    closeModal=(action 'closeModal')
+    isOpenModal=modal}}
+{{/liquid-unless}}
 
-  {{outlet}}
-
-{{/unless}}
+{{#liquid-bind modal class="modal-wrapper" as |thisModal|}}
+  {{#if thisModal}}
+  {{#x-modal closeModal=(action 'closeModal')}}
+    {{component thisModal}}
+  {{/x-modal}}
+  {{/if}}
+{{/liquid-bind}}

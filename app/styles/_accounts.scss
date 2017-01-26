@@ -32,6 +32,7 @@
     background-repeat: no-repeat;
     background-position: top right;
     background-size: 100%;
+
     &-blurb {
       position: absolute;
       display: block;
@@ -66,8 +67,6 @@
   @include mq("(min-width: 460px) and (max-width: #{$medium - 1}px)") {
     left: calc(50% - 230px);
   }
-  top: 30px;
-  left: 30px;
   svg {
     height: 33px;
     width: 79px;
@@ -83,12 +82,7 @@
   > a:focus {
     border: 1px dotted rgba(black, 0.2);
   }
-    @include mq($medium-and-up) {
-      fill: white;
-    }
-  }
 }
-
 
 .account-form {
   max-width: 460px;
@@ -109,6 +103,9 @@
   }
   &-description {
     margin: 0 0 28px 0;
+  }
+  &-link {
+    font-size: 14px;
   }
   &-btn {
     margin-bottom: 15px;
@@ -209,13 +206,13 @@
   ));
   max-width: 250px;
   margin: 0 auto;
-
+  
   >  a {
     @include fontsize(12);
     color: $gray;
   }
 }
-
+  
 .account-main {
   @include mq($medium-and-up) {
     padding-left: 318px;
