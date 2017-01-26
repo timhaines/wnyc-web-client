@@ -157,15 +157,15 @@ export default function() {
     }
     return page || new Response(404);
   });
-  
+
   /*-------------------------------------------------------------
   auth microservice
   ---------------------------------------------------------------*/
-  
+
   this.urlPrefix = config.wnycAuthAPI;
-  
+
   this.post('/v1/password', {});
-  
+
   this.get('/v1/session', (schema, request) => {
     if (!request.requestHeaders.Authorization) {
       return new Response(401);
@@ -175,7 +175,7 @@ export default function() {
   this.post('/v1/session', {access_token: 'secret', expires_in: 3600, token_type: 'bearer'});
   this.put('/v1/session', {access_token: 'secret', expires_in: 3600, token_type: 'bearer'});
   this.delete('/v1/session', {});
-  
+
   this.post('/v1/user', {});
   this.patch('/v1/user', (schema, request) => {
     if (!request.requestHeaders.Authorization) {
@@ -189,5 +189,38 @@ export default function() {
   });
   this.delete('/v1/user', () => new Response(204));
   this.get('/v1/user/exists-by-attribute', {username: ''});
-  
+
+  let userNotFoundException = {
+    "errors": {
+      "code": "UserNotFoundException",
+      "message": "Username/client id combination not found.",
+      "values": ["email"]
+    }
+  };
+
+  this.get('/v1/confirm/sign-up', (schema, request) => {
+    if (!request.queryParams.username || request.queryParams.username === "null") {
+      return new Response(400, {}, userNotFoundException);
+    } else {
+      return new Response(200);
+    }
+  });
+
+  let expiredCodeException = {
+    "errors": {
+      "code": "ExpiredCodeException",
+      "message": "Invalid code provided, please request a code again.",
+      "values": ["email"]
+    }
+  };
+
+  this.post('/v1/confirm/password-reset', (schema, request) => {
+    let params = JSON.parse(request.requestBody);
+    if (!params.confirmation || params.confirmation === "null") {
+      return new Response(400, {}, expiredCodeException);
+    } else {
+      return new Response(200);
+    }
+  });
+
 }
