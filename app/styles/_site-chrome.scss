@@ -40,14 +40,18 @@
 }
 
 .sitechrome-topright {
-  display: flex;
-  align-items: flex-end;
+  @include flexbox((
+    display: flex,
+    align-items: flex-end
+  ));
   > a,
   > div {
+    @include flexbox((
+      justify-content: center,
+      align-self: center
+    ));
     height: 100%;
     margin-right: 10px;
-    justify-content: center;
-    align-self: center;
     white-space: nowrap;
   }
 

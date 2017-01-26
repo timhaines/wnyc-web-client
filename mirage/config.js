@@ -157,11 +157,11 @@ export default function() {
     }
     return page || new Response(404);
   });
-
+  
   /*-------------------------------------------------------------
   auth microservice
   ---------------------------------------------------------------*/
-
+  
   this.urlPrefix = config.wnycAuthAPI;
   
   this.post('/v1/password', {});

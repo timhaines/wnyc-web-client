@@ -109,6 +109,11 @@
   }
   &-btn {
     margin-bottom: 15px;
+    > .fa {
+      margin-right: 6px;
+      font-size: 24px;
+      vertical-align: text-bottom;
+    }
   }
   &-separator {
     font-size: 16px;
@@ -194,12 +199,6 @@
   }
 }
 
-.account-main {
-  @include mq($medium-and-up) {
-    padding-left: 318px;
-  }
-}
-
 .account-footer {
   @include flexbox((
     display: flex,
@@ -211,5 +210,11 @@
   >  a {
     @include fontsize(12);
     color: $gray;
+  }
+}
+  
+.account-main {
+  @include mq($medium-and-up) {
+    padding-left: 318px;
   }
 }

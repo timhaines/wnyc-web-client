@@ -71,6 +71,12 @@ export default Ember.Route.extend(PlayParamMixin, {
     return this._super(...arguments);
   },
   
+  setupController(controller) {
+    controller.set('isMobile', window.Modernizr.touchevents);
+    controller.set('session', get(this, 'session'));
+    return this._super(...arguments);
+  },
+  
   actions: {
     willTransition() {
       this._super(...arguments);

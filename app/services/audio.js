@@ -34,7 +34,6 @@ export default Service.extend({
 
   // TODO: fix up currentStory/currentAudio interfaces for streams and on demands
   currentStory:         or('currentAudio.story', 'currentAudio'),
-  currentStreamingShow: readOnly('currentAudio.currentShow'),
 
   currentAudio:     null,
   currentContext:   null,

@@ -12,8 +12,8 @@
         defaultSlug=defaultSlug
         navRoot=navRoot
         channel=model.channel
-        isStaff=session.data.isStaff
         adminURL=adminURL
+        isStaff=session.data.isStaff
         item=model.channel.featured}}
 
         {{outlet}}
@@ -26,9 +26,9 @@
       {{/alt-channel-layout}}
     {{else}}
       {{#if model.channel.hasMarquee}}
-        {{x-marquee model=model.channel adminURL=adminURL isStaff=session.data.isStaff}}
+        {{x-marquee model=model.channel isStaff=session.data.isStaff adminURL=adminURL}}
       {{else}}
-        {{channel-header model=model.channel adminURL=adminURL isStaff=session.data.isStaff classNames=(unless model.channel.featured 'flush')}}
+        {{channel-header model=model.channel isStaff=session.data.isStaff adminURL=adminURL classNames=(unless model.channel.featured 'flush')}}
       {{/if}}
 
     <div class="l-constrained">
