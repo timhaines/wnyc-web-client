@@ -9,6 +9,7 @@ const { hash: waitFor } = Ember.RSVP;
 export default Ember.Route.extend(PlayParamMixin, {
   metrics: service(),
   session: service(),
+  googleAds:  service(),
   dataPipeline: service(),
   
   titleToken(model) {
@@ -37,6 +38,8 @@ export default Ember.Route.extend(PlayParamMixin, {
     let dataPipeline = get(this, 'dataPipeline');
     let {containers:action, title:label} = get(model, 'story.analytics');
     let nprVals = get(model, 'story.nprAnalyticsDimensions');
+    
+    get(this, 'googleAds').doTargeting(get(model, 'story'));
 
     if (get(model, 'story.extendedStory.headerDonateChunk')) {
       transition.send('updateDonateChunk', get(model, 'story.extendedStory.headerDonateChunk'));
