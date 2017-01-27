@@ -38,16 +38,39 @@
     background-position: center left;
     background-size: 100%;
     background-size: cover;
+    transition: width .45s;
+    position: relative;
 
+    &:before {
+      content: " ";
+      background: linear-gradient(to bottom, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+      height: 100px;
+      position: absolute;
+      width: 100%;
+    }
     &-blurb {
       position: absolute;
       display: block;
       bottom: 35px;
-      width: 320px;
+      width: 560px;
       color: white;
       background: $red;
       padding: 25px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
+
+      @include mq($medium-only) {
+        width: 320px;
+      }
+    }
+    &-quote {
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 10px;
+
+      @include mq($medium-only) {
+        font-size: 16px;
+        line-height: 26px;
+      }
     }
     &-name {
       font-size: 14px;
@@ -82,8 +105,13 @@
     left: calc(50% - 230px);
   }
   svg {
-    height: 33px;
-    width: 79px;
+    height: 50px;
+    width: 120px;
+
+    @include mq($small-only) {
+      height: 33px;
+      width: 79px;
+    }
   }
   svg path {
     fill: white;
