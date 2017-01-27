@@ -4,9 +4,17 @@
   top: 35px;
   font-size: 14px;
   color: $lightgray;
+  @include mq($small-only) {
+    max-width: 460px;
+    padding: 0 30px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: right;
+  }
   > span {
     display: none;
-    @include mq($middle-narrow-and-up) {
+    @include mq($medium-and-up) {
       display: inline;
     }
   }
@@ -32,7 +40,7 @@
     width: 55%;
     height: 100vh;
     min-height: 850px;
-    @include responsive-background-image('/assets/img/backgrounds/marisa_bg@2x.jpg', '/assets/img/backgrounds/marisa_bg@2x.jpg');
+    @include responsive-background-image('/assets/img/backgrounds/melissa_bg@1x.jpg', '/assets/img/backgrounds/marisa_bg@2x.jpg');
     background-color: $gray;
     background-repeat: no-repeat;
     background-position: center left;
@@ -43,8 +51,8 @@
 
     &:before {
       content: " ";
-      background: linear-gradient(to bottom, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
-      height: 100px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+      height: 200px;
       position: absolute;
       width: 100%;
     }
@@ -259,7 +267,7 @@
     align-items: center
   ));
   @include fontsize(12);
-  color: $lightergray;
+  color: $lightgray;
   padding-bottom: 40px;
 
   .account-footer-links {
@@ -268,7 +276,7 @@
       justify-content: space-around
     ));
     width: 150px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 
     >  a {
       @include link--gray;
