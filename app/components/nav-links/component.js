@@ -23,7 +23,7 @@ export default Component.extend({
       // point to prod
       // in prod builds on demo or production, these values will point to our 
       // configured wnycURL
-      origin = 'http://www.wnyc.org';
+      origin = 'https://www.wnyc.org';
     } else {
       origin = canonicalize(config.wnycURL);
     }

@@ -90,7 +90,7 @@ test('it adds is-shown class when summary link is clicked', function(assert) {
 });
 
 test('it links to the story url', function(assert) {
-  let url = "http://wnyc.org";
+  let url = "https://wnyc.org";
   this.set('story', server.create('discover-story', {url: url}));
 
   this.render(hbs`{{discover-playlist-story-info story=story}}`);
@@ -98,7 +98,7 @@ test('it links to the story url', function(assert) {
 });
 
 test('it links to the show url', function(assert) {
-  let url = "http://wnyc.org";
+  let url = "https://wnyc.org";
   this.set('story', server.create('discover-story', {showUrl: url}));
 
   this.render(hbs`{{discover-playlist-story-info story=story}}`);

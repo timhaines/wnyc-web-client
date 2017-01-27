@@ -30,6 +30,6 @@ export default Component.extend({
     'wqxr':             'http://www.wqxr.org',
     'q2':               'http://www.wqxr.org/series/q2/',
     'wqxr-special':     'http://www.wqxr.org/blogs/operavore/',
-    'jonathan-channel': 'http://www.wnyc.org/series/jonathan-channel'
+    'jonathan-channel': 'https://www.wnyc.org/series/jonathan-channel'
   }
 });

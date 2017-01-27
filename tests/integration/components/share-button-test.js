@@ -10,7 +10,7 @@ moduleForComponent('share-button', 'Integration | Component | share button', {
 
 let exampleStory = {
   title: 'Cool Link',
-  url: 'http://wnyc.org/story/cool-link',
+  url: 'https://wnyc.org/story/cool-link',
   analyticsCode: '123',
 };
 exampleStory.shareMetadata = shareMetadata(exampleStory);
@@ -19,7 +19,7 @@ let exampleStream = {
   audioType: 'stream',
   currentShow: {
     title: 'Cool Show',
-    url: 'http://wync.org/shows/cool-show'
+    url: 'https://wnyc.org/shows/cool-show'
   }
 };
 exampleStream.shareMetadata = shareMetadata(exampleStream);

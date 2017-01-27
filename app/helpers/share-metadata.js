@@ -11,7 +11,7 @@ export function shareMetadata(story) {
         let entry = get(story, 'currentPlaylistItem.catalogEntry');
         if (entry) {
           shareText = `${entry.title} - ${entry.composer.name}`;
-          shareUrl = 'http://www.wnyc.org/streams/' + get(story, 'slug');
+          shareUrl = 'https://www.wnyc.org/streams/' + get(story, 'slug');
         } else {
           shareText = get(story, 'currentShow.title');
           shareUrl = get(story, 'currentShow.url');
@@ -29,4 +29,3 @@ export function shareMetadata(story) {
 }
 
 export default helper(shareMetadata);
-

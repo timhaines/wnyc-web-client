@@ -54,7 +54,7 @@ test('it produces the correct metadata for stories', function(assert) {
     },
     expectedMetadata: {
       shareText: 'Masterpiece - Maestro',
-      shareUrl: 'http://www.wnyc.org/streams/test',
+      shareUrl: 'https://www.wnyc.org/streams/test',
       analyticsCode: ''
     }
   },{
