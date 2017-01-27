@@ -87,6 +87,10 @@
   }
   svg path {
     fill: white;
+
+    @include mq($small-only) {
+      fill: $red;
+    }
   }
   > a {
     display: block;
@@ -186,7 +190,7 @@
     }
   }
 
-  @include mq($medium-only) {
+  @include mq($small-only) {
     height: auto;
   }
 }
