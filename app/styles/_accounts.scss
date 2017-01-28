@@ -1,17 +1,18 @@
 .account-togglelogin {
-  position: absolute;
-  right: 30px;
+  position: relative;
   top: 35px;
+  margin: 0 auto;
+  padding: 0 30px;
+  width: 100%;
+  display: block;
   font-size: 14px;
   color: $lightgray;
+  text-align: right;
+
   @include mq($small-only) {
     max-width: 460px;
-    padding: 0 30px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    text-align: right;
   }
+
   > span {
     display: none;
     @include mq($medium-and-up) {
@@ -39,7 +40,7 @@
   .account-promo {
     width: 55%;
     height: 100vh;
-    min-height: 850px;
+    min-height: 950px;
     @include responsive-background-image('/assets/img/backgrounds/marisa_bg@1x.jpg', '/assets/img/backgrounds/marisa_bg@2x.jpg');
     background-color: $gray;
     background-repeat: no-repeat;
@@ -60,6 +61,7 @@
       position: absolute;
       display: block;
       bottom: 35px;
+      right: 0;
       width: 560px;
       color: white;
       background: $red;
@@ -68,6 +70,10 @@
 
       @include mq($medium-only) {
         width: 320px;
+      }
+
+      @include mq($height-medium-only) {
+        bottom: 250px;
       }
     }
     &-quote {
@@ -113,20 +119,20 @@
     left: calc(50% - 230px);
   }
   svg {
-    height: 50px;
-    width: 120px;
+    // height: 50px;
+    // width: 120px;
 
-    @include mq($small-only) {
+    // @include mq($small-only) {
       height: 33px;
       width: 79px;
-    }
+    // }
   }
   svg path {
-    fill: white;
-
-    @include mq($small-only) {
+    // fill: white;
+    //
+    // @include mq($small-only) {
       fill: $red;
-    }
+    // }
   }
   > a {
     display: block;
