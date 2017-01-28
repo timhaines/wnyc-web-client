@@ -40,7 +40,7 @@
     width: 55%;
     height: 100vh;
     min-height: 850px;
-    @include responsive-background-image('/assets/img/backgrounds/temp-marisa_bg@1x.jpg', '/assets/img/backgrounds/temp-marisa_bg@2x.jpg');
+    @include responsive-background-image('/assets/img/backgrounds/marisa_bg@1x.jpg', '/assets/img/backgrounds/marisa_bg@2x.jpg');
     background-color: $gray;
     background-repeat: no-repeat;
     background-position: center left;
@@ -142,7 +142,7 @@
   max-width: 460px;
   margin: 0 auto 75px;
   padding: 100px 30px 0 30px;
-  height: 665px;
+  height: 770px;
   @include flexbox((
     display: flex,
     flex-direction: column,
