@@ -37,6 +37,22 @@
     ));
   }
 
+  .login {
+    .account-form {
+      height: 470px;
+    }
+
+    .account-promo {
+      min-height: 750px;
+    }
+  }
+
+  .signup {
+    .account-form {
+      height: 770px;
+    }
+  }
+
   .account-promo {
     width: 55%;
     height: 100vh;
@@ -299,21 +315,5 @@
 
   @include mq($height-medium-only) {
     height: initial;
-  }
-}
-
-.login {
-  .account-form {
-    height: 470px;
-  }
-
-  .account-promo {
-    min-height: 750px;
-  }
-}
-
-.signup {
-  .account-form {
-    height: 770px;
   }
 }
