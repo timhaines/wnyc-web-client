@@ -30,8 +30,12 @@
   }
 }
 
-.signup .account-promo {
-  min-height: 840px;
+@include mq($h-short-and-up) {
+  .signup {
+    .account-promo {
+      min-height: 860px;
+    }
+  }
 }
 
 @include mq($medium-and-up, $h-medium-and-up) {
@@ -53,6 +57,12 @@
     .account-promo {
       min-height: 950px;
     }
+  }
+}
+
+@include mq($small-only) {
+  .account .promo {
+    min-height: auto;
   }
 }
 
