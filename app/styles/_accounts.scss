@@ -30,7 +30,7 @@
   }
 }
 
-@include mq($h-short-and-up) {
+@include mq($medium-and-up, $h-medium) {
   .signup {
     .account-promo {
       min-height: 860px;
@@ -85,13 +85,6 @@
     background-size: cover;
     transition: width .45s;
 
-    &:before {
-      content: " ";
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-      height: 200px;
-      position: absolute;
-      width: 100%;
-    }
     &-blurb {
       position: absolute;
       display: block;
