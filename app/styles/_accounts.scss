@@ -1,17 +1,18 @@
 .account-togglelogin {
-  position: absolute;
-  right: 30px;
+  position: relative;
   top: 35px;
+  margin: 0 auto;
+  padding: 0 30px;
+  width: 100%;
+  display: block;
   font-size: 14px;
   color: $lightgray;
+  text-align: right;
+
   @include mq($small-only) {
     max-width: 460px;
-    padding: 0 30px;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    text-align: right;
   }
+
   > span {
     display: none;
     @include mq($medium-and-up) {
@@ -23,8 +24,51 @@
 .account-promo {
   width: 0;
   height: 0;
+  min-height: auto;
   &-blurb {
     display: none;
+  }
+}
+
+@include mq($medium-and-up, $h-medium) {
+  .login {
+    .account-promo {
+      min-height: 630px;
+    }
+  }
+
+  .signup {
+    .account-promo {
+      min-height: 860px;
+    }
+  }
+}
+
+@include mq($medium-and-up, $h-medium-and-up) {
+  .login {
+    .account-form {
+      height: 470px;
+    }
+
+    .account-promo {
+      min-height: 750px;
+    }
+  }
+
+  .signup {
+    .account-form {
+      height: 770px;
+    }
+
+    .account-promo {
+      min-height: 950px;
+    }
+  }
+}
+
+@include mq($small-only) {
+  .account .promo {
+    min-height: auto;
   }
 }
 
@@ -39,27 +83,19 @@
   .account-promo {
     width: 55%;
     height: 100vh;
-    min-height: 850px;
-    @include responsive-background-image('/assets/img/backgrounds/temp-marisa_bg@1x.jpg', '/assets/img/backgrounds/temp-marisa_bg@2x.jpg');
+    @include responsive-background-image('/assets/img/backgrounds/marisa_bg@1x.jpg', '/assets/img/backgrounds/marisa_bg@2x.jpg');
     background-color: $gray;
     background-repeat: no-repeat;
     background-position: center left;
     background-size: 100%;
     background-size: cover;
     transition: width .45s;
-    position: relative;
 
-    &:before {
-      content: " ";
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-      height: 200px;
-      position: absolute;
-      width: 100%;
-    }
     &-blurb {
       position: absolute;
       display: block;
       bottom: 35px;
+      right: 0;
       width: 560px;
       color: white;
       background: $red;
@@ -130,7 +166,7 @@
   }
   > a {
     display: block;
-    padding: 30px;
+    padding: 27px 30px;
     border: 1px solid transparent;
   }
   > a:focus {
@@ -142,7 +178,6 @@
   max-width: 460px;
   margin: 0 auto 75px;
   padding: 100px 30px 0 30px;
-  height: 665px;
   @include flexbox((
     display: flex,
     flex-direction: column,
@@ -214,15 +249,14 @@
 
   @include mq($middle-narrow-and-up) {
     &-row {
-      position: relative;
-    }
-    &-row .account-form-col2 {
-      width: 193px;
-    }
-    &-row .account-form-col2:last-child {
-      position: absolute;
-      top: 0;
-      left: 207px;
+      @include flexbox((
+        display: flex,
+        justify-content: space-between
+      ));
+
+      .account-form-col2 {
+        width: 48%;
+      }
     }
   }
 
@@ -285,18 +319,26 @@
 }
 
 .account-main {
+  @include flexbox((
+    display: flex,
+    flex-direction: column,
+    justify-content: flex-start
+  ));
+
   @include mq($medium-and-up) {
     width: 45%;
 
     @include flexbox((
-      display: flex,
-      flex-direction: column,
       justify-content: space-between
     ));
     height: 100vh;
   }
 
-  @include mq($height-medium-only) {
+  @include mq($h-medium) {
     height: initial;
+
+    @include flexbox((
+      justify-content: flex-start
+    ));
   }
 }
