@@ -98,7 +98,7 @@
     "loader.js": "^4.0.10",
     "morgan": "^1.6.1",
     "nypr-ui": "github:nypublicradio/nypr-ui#mwalsh/WE-6506_error-hint-alignment",
-    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#8be618f"
+    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#3a2efef"
   },
   "ember-addon": {
     "paths": [
