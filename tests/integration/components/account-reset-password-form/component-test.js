@@ -38,7 +38,7 @@ test('submitting the form sends the correct values to the correct endpoint', fun
 
   let testPassword = 'password123';
   this.$('label:contains(New Password) + input').val(testPassword);
-  this.$('label:contains(New Password) + input').change();
+  this.$('label:contains(New Password) + input').blur();
   this.$('button:contains(Reset password)').click();
 
   return wait().then(() => {
@@ -68,7 +68,7 @@ test("it shows the 'oops' page when api returns an expired error", function(asse
 
   let testPassword = 'password123';
   this.$('label:contains(New Password) + input').val(testPassword);
-  this.$('label:contains(New Password) + input').change();
+  this.$('label:contains(New Password) + input').blur();
   this.$('button:contains(Reset password)').click();
 
   return wait().then(() => {
