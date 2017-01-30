@@ -97,8 +97,8 @@
     "liquid-fire": "0.26.4",
     "loader.js": "^4.0.10",
     "morgan": "^1.6.1",
-    "nypr-ui": "github:nypublicradio/nypr-ui#mwalsh/WE-6506_error-hint-alignment",
-    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#8be618f"
+    "nypr-ui": "github:nypublicradio/nypr-ui#9050bb956e972af3d09900a9ac6da804e8feaed8",
+    "nypr-account-settings": "github:nypublicradio/nypr-account-settings#3a2efef"
   },
   "ember-addon": {
     "paths": [

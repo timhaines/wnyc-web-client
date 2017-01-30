@@ -149,20 +149,11 @@
     left: calc(50% - 230px);
   }
   svg {
-    height: 50px;
-    width: 120px;
-
-    @include mq($small-only) {
-      height: 33px;
-      width: 79px;
-    }
+    height: 33px;
+    width: 79px;
   }
   svg path {
-    fill: white;
-
-    @include mq($small-only) {
-      fill: $red;
-    }
+    fill: $red;
   }
   > a {
     display: block;
