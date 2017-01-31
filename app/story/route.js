@@ -7,9 +7,9 @@ const { get } = Ember;
 const { hash: waitFor } = Ember.RSVP;
 
 export default Ember.Route.extend(PlayParamMixin, {
-  metrics: service(),
-  session: service(),
-  googleAds:  service(),
+  metrics:      service(),
+  session:      service(),
+  googleAds:    service(),
   dataPipeline: service(),
   
   titleToken(model) {

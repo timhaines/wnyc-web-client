@@ -31,6 +31,7 @@ export default Route.extend(PlayParamMixin, {
     })
     .catch(e => retryFromServer(e, listingSlug.replace(/\/*$/, '/')));
   },
+
   afterModel({ channel }, transition) {
     let channelTitle = get(channel, 'title');
     let metrics = get(this, 'metrics');
@@ -65,6 +66,7 @@ export default Route.extend(PlayParamMixin, {
       client: config.clientSlug
     });
   },
+
   setupController(controller, model) {
     let { page_params = '' } = this.paramsFor(`${this.routeName}.page`);
     let [navSlug] = page_params.split('/');

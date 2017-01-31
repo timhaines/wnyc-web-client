@@ -16,7 +16,7 @@ export default Component.extend({
       this.toggleProperty('isPopupOpen');
     },
     logout() {
-      this.get('metrics').trackEvent({
+      this.get('metrics').trackEvent('GoogleAnalytics', {
         category: 'WNYC Menu',
         label: 'Clicked Logout',
       });

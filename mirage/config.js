@@ -111,23 +111,6 @@ export default function() {
   });
 
   /*------------------------------------------------------------
-    auth microservice endpoints
-  --------------------------------------------------------------*/
-  let authEndpoint = '/';
-  let accessToken = {access_token: ""};
-  let userDetails = {username: "", attributes: {firstName:""}};
-  this.post(`${authEndpoint}/v1/session`, accessToken);
-  this.get(`${authEndpoint}/v1/session`, userDetails);
-  this.delete(`${authEndpoint}/v1/session`, userDetails);
-  this.put(`${authEndpoint}/v1/session`, accessToken);
-
-  this.post(`${authEndpoint}/v1/user`, {});
-  this.delete(`${authEndpoint}/v1/user`, new Response(204));
-
-
-
-
-  /*------------------------------------------------------------
     passthroughs
   --------------------------------------------------------------*/
 
