@@ -9,6 +9,7 @@ import observer from 'ember-metal/observer';
 import ENV from 'wnyc-web-client/config/environment';
 import fetch from 'fetch';
 import { rejectUnsuccessfulResponses } from 'wnyc-web-client/utils/fetch-utils';
+import messages from 'wnyc-web-client/validations/custom-messages';
 
 export default Component.extend({
   store: service(),
@@ -41,11 +42,14 @@ export default Component.extend({
   },
   applyErrorToChangeset(error, changeset) {
     if (error) {
+      changeset.rollback(); // so errors don't stack up
       if (error.code === "AccountExists") {
         changeset.validate('email');
         changeset.pushErrors('email', `An account already exists for the email ${changeset.get('email')}.<br/> <a href="/login">Log in?</a> <a href="/forgot">Forgot password?</a>`);
         changeset.set('emailConfirmation', null);
         changeset.set('error.emailConfirmation', null);
+      } else if (error.message === 'User is disabled') {
+        changeset.pushErrors('email', messages.userDisabled);
       }
     }
   },
