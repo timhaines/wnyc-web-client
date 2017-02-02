@@ -79,6 +79,9 @@ export function beforeAppend(element, page) {
       legacyContent = element;
     }
     let newContent = document.createElement('div');
+    if (!$(legacyContent).hasClass('graphic-responsive')){
+      newContent.classList.add('l-constrained');
+    }
     if (page.get('id') === 'search/') {
       newContent.classList.add('search');
     }
