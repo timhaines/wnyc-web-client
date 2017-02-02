@@ -40,7 +40,7 @@ export function beforeTeardown(/* element, page */) {
   // player.js listens for a storage event with a handler defined on the wnyc object,
   // which is triggered by logic outside of Ember; unbind to avoid throwing errors
   $(window).off('unload storage');
-  
+
   // the whats on widget only runs on the homepage but sets up an interval that
   // continues to run. cancel it here so it doesn't run in unsafe contexts
   let timeoutId = get(window, 'wnyc.apis.whatsOnToday.update.updateTimeoutId');
@@ -87,9 +87,6 @@ export function beforeAppend(element, page) {
       legacyContent = element;
     }
     let newContent = document.createElement('div');
-    if (!$(legacyContent).hasClass('graphic-responsive')){
-      newContent.classList.add('l-constrained');
-    }
     if (page.get('id') === 'search/') {
       newContent.classList.add('search');
     }
@@ -98,7 +95,7 @@ export function beforeAppend(element, page) {
     }
     container.appendChild(newContent);
   }
-  
+
   // is there a sitewide chunk? save it from demolition
   let sitewideChunk = element.querySelector('#wnyc-sitewide');
   if (sitewideChunk) {
