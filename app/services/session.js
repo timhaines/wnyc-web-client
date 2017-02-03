@@ -2,6 +2,7 @@ import SessionService from 'ember-simple-auth/services/session';
 import config from 'wnyc-web-client/config/environment';
 import fetch from 'fetch';
 import getOwner from 'ember-owner/get';
+import RSVP from 'rsvp';
 
 export default SessionService.extend({
   syncBrowserId(report = true) {
