@@ -14,7 +14,7 @@ module.exports = function(defaults) {
   }
   var app = new EmberApp(defaults, {
     autoprefixer: {
-      browsers: ['last 3 versions']
+      browsers: ['last 4 versions']
     },
     babel: { includePolyfill: true },
     trees: {
