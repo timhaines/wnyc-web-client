@@ -5,7 +5,6 @@ import Changeset from 'ember-changeset';
 import SignupValidations from 'wnyc-web-client/validations/signup';
 import lookupValidator from 'ember-changeset-validations';
 import service from 'ember-service/inject';
-import observer from 'ember-metal/observer';
 import ENV from 'wnyc-web-client/config/environment';
 import fetch from 'fetch';
 import { rejectUnsuccessfulResponses } from 'wnyc-web-client/utils/fetch-utils';
@@ -20,13 +19,6 @@ export default Component.extend({
     set(this, 'changeset', new Changeset(get(this, 'newUser'), lookupValidator(SignupValidations), SignupValidations));
     get(this, 'changeset').validate();
   },
-  
-  emailObserver: observer('changeset.email', function() {
-    if (get(this, 'changeset.emailConfirmation')) {
-      get(this, 'changeset').validate('emailConfirmation');
-    }
-  }),
-
   actions: {
     onSubmit() {
       return this.signUp();
@@ -46,8 +38,6 @@ export default Component.extend({
       if (error.code === "AccountExists") {
         changeset.validate('email');
         changeset.pushErrors('email', `An account already exists for the email ${changeset.get('email')}.<br/> <a href="/login">Log in?</a> <a href="/forgot">Forgot password?</a>`);
-        changeset.set('emailConfirmation', null);
-        changeset.set('error.emailConfirmation', null);
       } else if (error.message === 'User is disabled') {
         changeset.pushErrors('email', messages.userDisabled);
       }

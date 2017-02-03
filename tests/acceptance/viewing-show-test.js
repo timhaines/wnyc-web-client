@@ -390,3 +390,38 @@ test('show google ads test', function(assert) {
     assert.ok(refreshSpy.calledTwice, 'refresh was called twice');
   });
 });
+
+test('show google ads test', function(assert) {
+  let show = server.create('show', {
+    id: 'shows/foo/',
+    cmsPK: 123,
+    linkroll: [
+      {navSlug: 'episodes', title: 'Episodes'}
+    ],
+    socialLinks: [{title: 'facebook', href: 'http://facebook.com'}],
+    apiResponse: server.create('api-response', { id: 'shows/foo/episodes/1' })
+  });
+  server.create('django-page', {id: show.id});
+  
+  let refreshSpy = sinon.spy();
+
+  window.googletag.cmd = {
+    push(fn) {
+      fn();
+    }
+  };
+  window.googletag.pubads = function() {
+    return {
+      refresh: refreshSpy,
+      addEventListener() {}
+    };
+  };
+  
+  djangoPage
+    .bootstrap(show)
+    .visit(show);
+    
+  andThen(function() {
+    assert.ok(refreshSpy.calledTwice, 'refresh was called twice');
+  });
+});

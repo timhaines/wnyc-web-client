@@ -1,50 +1,50 @@
 {{#django-page page=model.page}}
-    {{#unless model.channel.altLayout}}
-      <div id="leaderboard" class="aligncenter l-constrained is-collapsed"></div>
-    {{/unless}}
+  {{#unless model.channel.altLayout}}
+    <div id="leaderboard" class="aligncenter l-constrained is-collapsed"></div>
+  {{/unless}}
 
-    {{#if model.channel.altLayout}}
-      {{#alt-channel-layout
-        navSlugTransition=(action 'navSlugTransition')
-        defaultSlug=defaultSlug
-        navRoot=navRoot
-        channel=model.channel
-        adminURL=adminURL
-        isStaff=session.data.isStaff
-        item=model.channel.featured}}
+  {{#if model.channel.altLayout}}
+    {{#alt-channel-layout
+      navSlugTransition=(action 'navSlugTransition')
+      defaultSlug=defaultSlug
+      navRoot=navRoot
+      channel=model.channel
+      adminURL=adminURL
+      isStaff=session.data.isStaff
+      item=model.channel.featured}}
 
-        {{outlet}}
+      {{outlet}}
 
-        {{page-numbers
-          currentPage=pageNumbers.page
-          totalPages=pageNumbers.totalPages
-          action="pageNumberClicked"}}
+      {{page-numbers
+        currentPage=pageNumbers.page
+        totalPages=pageNumbers.totalPages
+        action="pageNumberClicked"}}
 
-      {{/alt-channel-layout}}
-    {{else}}
-      {{#if model.channel.hasMarquee}}
+    {{/alt-channel-layout}}
+  {{else}}
+    {{#if model.channel.hasMarquee}}
         {{x-marquee model=model.channel isStaff=session.data.isStaff adminURL=adminURL}}
-      {{else}}
-        {{channel-header model=model.channel isStaff=session.data.isStaff adminURL=adminURL classNames=(unless model.channel.featured 'flush')}}
+    {{else}}
+      {{channel-header model=model.channel isStaff=session.data.isStaff adminURL=adminURL classNames=(unless model.channel.featured 'flush')}}
+    {{/if}}
+
+  <div class="l-constrained">
+    <main class="l-col2of3">
+
+      {{#if model.channel.featured}}
+      <section>
+        <h1 class="for-screenreaders">Featured Item</h1>
+        {{story-tease
+          parentTitle=model.channel.title
+          isStaff=session.data.isStaff
+          adminURL=adminURL
+          item=model.channel.featured
+          hideLinks=true
+          isFeatured=true
+          class='box box--bgoverflow'
+          playContext='FeaturedItem'}}
+      </section>
       {{/if}}
-
-    <div class="l-constrained">
-      <main class="l-col2of3">
-
-        {{#if model.channel.featured}}
-        <section>
-          <h1 class="for-screenreaders">Featured Item</h1>
-          {{story-tease
-            parentTitle=model.channel.title
-            isStaff=session.data.isStaff
-            adminURL=adminURL
-            item=model.channel.featured
-            hideLinks=true
-            isFeatured=true
-            class='box box--bgoverflow'
-            playContext='FeaturedItem'}}
-        </section>
-        {{/if}}
 
       {{#if model.channel.linkroll}}
         {{nav-links
@@ -89,9 +89,9 @@
           twitter=model.channel.twitter.firstObject
           newsletter=model.channel.newsletter.firstObject}}
 
-          {{#if model.channel.chunkSidebarTop}}
-            {{django-page page=model.channel.chunkSidebarTop loadingType='channel-page' class='channel-sidebar-chunk'}}
-          {{/if}}
+        {{#if model.channel.chunkSidebarTop}}
+          {{django-page page=model.channel.chunkSidebarTop loadingType='channel-page' class='channel-sidebar-chunk'}}
+        {{/if}}
 
         <div id="rightRail" class="align--mq-centertoright channel-ad"></div>
 
