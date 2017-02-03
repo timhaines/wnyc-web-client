@@ -14,7 +14,7 @@ module.exports = function(defaults) {
   }
   var app = new EmberApp(defaults, {
     autoprefixer: {
-      browsers: ['last 3 versions', 'iOS >= 7', 'Android > 4.4']
+      browsers: ['last 3 versions', 'iOS >= 7', 'Android >= 4.4']
     },
     babel: { includePolyfill: true },
     trees: {
@@ -46,7 +46,7 @@ module.exports = function(defaults) {
   } catch(e) {
     console.log('there was a problem importing the modernizr build. please run grunt modernizr:dist first.');
   }
-  
+
   app.import('vendor/polyfills/url.js');
   app.import('bower_components/normalize.css/normalize.css');
 
