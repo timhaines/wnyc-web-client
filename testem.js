@@ -9,24 +9,8 @@ function testReporter() {
   return _circleTestFolder() ? 'xunit' : 'tap';
 }
 
-function chromeArgs() {
-  if (!_circleCI()) {
-    return [
-      "--no-default-browser-check",
-      "--no-first-run",
-      "--disable-default-apps",
-      "--disable-extensions",
-      "--disable-background-timer-throttling"
-    ];
-  }
-}
-
 function _circleTestFolder() {
   return process.env['CIRCLE_TEST_REPORTS'];
-}
-
-function _circleCI() {
-  return process.env['CIRCLECI'];
 }
 
 module.exports = {
@@ -41,7 +25,17 @@ module.exports = {
     "Firefox"
   ],
   "browser_args" : {
-    "Chrome": chromeArgs()
+    "Chrome": [
+      "--no-default-browser-check",
+      "--no-first-run",
+      "--disable-default-apps",
+      "--disable-extensions",
+      "--disable-background-timer-throttling",
+      "--disable-translate"
+    ],
+    "Firefox": [
+      "-safe-mode"
+    ]
   },
   "reporter": testReporter(),
   "report_file": reportFile(),
