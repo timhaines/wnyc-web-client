@@ -1,7 +1,7 @@
 /*jshint node:true*/
 function reportFile() {
   if (_circleTestFolder()) {
-    return _circleTestFolder() + '/test.xml';
+    return _circleTestFolder() + '/test_report.xml';
   }
 }
 

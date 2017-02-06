@@ -5,7 +5,7 @@ function coverageFolder() {
 }
 
 module.exports = {
-  coverageEnvVar: 'CI',
+  coverageEnvVar: 'CIRCLECI',
   useBabelInstrumenter: true,
-  coverageFolder: coverageFolder(),
+  coverageFolder: coverageFolder()
 };
