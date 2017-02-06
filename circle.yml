@@ -8,7 +8,8 @@ machine:
 
 test:
   override:
-    - ./node_modules/ember-cli/bin/ember test
+    - ./node_modules/ember-cli/bin/ember exam --split=$CIRCLE_NODE_TOTAL --partition=`expr $CIRCLE_NODE_INDEX + 1`:
+      parallel: true
 
 dependencies:
   override:
