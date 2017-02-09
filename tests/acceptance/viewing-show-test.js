@@ -293,8 +293,8 @@ test('show pages with a play param', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), `${show.id}?play=${story.id}`);
-    assert.ok(Ember.$('.persistent-player').length, 'persistent player should be visible');
-    assert.equal(Ember.$('[data-test-selector=persistent-player-story-title]').text(), story.title, `${story.title} should be loaded in player UI`);
+    assert.ok(Ember.$('.nypr-player').length, 'persistent player should be visible');
+    assert.equal(Ember.$('[data-test-selector=nypr-player-story-title]').text(), story.title, `${story.title} should be loaded in player UI`);
   });
 
 });
