@@ -25,7 +25,7 @@ moduleFor('service:audio', 'Unit | Service | audio', {
     const sessionStub = Ember.Service.extend({
       data: {}, // we only really need the data thing
       syncBrowserId(cb) { cb('secrets'); },
-      authorize() {}
+      authorize: function() {},
     });
     const metricsStub = Ember.Service.extend({
       trackEvent() {}
@@ -381,7 +381,7 @@ test('service records a listen when a story is played', function(assert) {
     site_id: story.siteId,
     current_position: 0
   };
-
+    
   Ember.run(() => {
     service.play(story.id).then(() => {
       let forwardPosition = {current_position: service.get('position')};
@@ -403,7 +403,7 @@ test('service records a listen when a story is played', function(assert) {
           assert.deepEqual(reportStub.getCall(4).args, ['pause', Object.assign(expected, pausePosition)], 'should have received proper attrs');
           assert.deepEqual(reportStub.getCall(5).args, ['resume', Object.assign(expected, pausePosition)], 'should have received proper attrs');
           assert.deepEqual(reportStub.getCall(6).args, ['finish', Object.assign(expected, finishedPosition)], 'should have received proper attrs');
-
+          
           // set_position is special case
           assert.deepEqual(reportStub.getCall(3).args, ['position', Object.assign(expected, setPosition)], 'current_position should be time when action happened, not target time');
           done();
@@ -428,7 +428,7 @@ test('service records a listen when a stream is played', function(assert) {
     current_show: { episode_pk: currentStory.id }
   });
   let audio = DummyConnection.create({ url: stream.attrs.urls.mp3[0] });
-
+  
   let expected = {
     audio_type: 'stream',
     cms_id: currentStory.id,
@@ -437,9 +437,9 @@ test('service records a listen when a stream is played', function(assert) {
     stream_id: stream.slug,
     current_position: 0
   };
-
+    
   service.get('hifi.soundCache').cache(audio);
-
+  
   Ember.run(() => {
     service.play(stream.slug).then(() => {
       service.pause();

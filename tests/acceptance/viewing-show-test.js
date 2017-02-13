@@ -319,11 +319,11 @@ test('metrics properly reports channel attrs', function(assert) {
     socialLinks: [{title: 'facebook', href: 'http://facebook.com'}],
     apiResponse: server.create('api-response', { id: 'shows/foo/episodes/1' })
   });
-
+  
   assert.expect(2);
   server.create('django-page', {id: show.id});
-
-  server.post(`${config.wnycAPI}/api/v1/itemview`, (schema, {requestBody}) => {
+  
+  server.post(`${config.wnycAPI}/analytics/v1/events/viewed`, (schema, {requestBody}) => {
     let {
       cms_id,
       item_type,
