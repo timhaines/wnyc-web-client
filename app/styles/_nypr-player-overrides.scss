@@ -33,6 +33,16 @@ $wnyc-player-link-color       : #77A6DE;
         position: relative;
         top: 2px;
       }
+
+      &:focus,
+      &:hover {
+        @include svg-color(rgba($nypr-player-accent-color, 0.5));
+        color: rgba($nypr-player-accent-color, 0.5);
+
+        .icon {
+          color: rgba($nypr-player-accent-color, 0.5);
+        }
+      }
     }
   }
 }
