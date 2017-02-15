@@ -42,7 +42,7 @@
       {{/player-notification}}
     {{/liquid-if}}
 
-    {{#nypr-player currentTitle=integration.currentTitle backdropImageUrl=integration.backdropImageUrl as |content|}}
+    {{#nypr-player currentTitle=integration.currentTitle backdropImageUrl=integration.backdropImageUrl autofocus=true as |content|}}
         {{#content.for 'trackInfo'}}
           {{nypr-player-integration.track-info
             showTitle      = integration.showTitle
