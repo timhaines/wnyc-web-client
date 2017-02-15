@@ -99,7 +99,7 @@
     "morgan": "^1.6.1",
     "nypr-ui": "github:nypublicradio/nypr-ui#3d3f9aaf79bad8a030300dc9acd3dd1439ec791f",
     "nypr-account-settings": "github:nypublicradio/nypr-account-settings#01bf3260b849ea9cf9309e744aa0349163aaaac7",
-    "nypr-player": "github:nypublicradio/nypr-player#014e65e6a68a46d9fe7891bcf31db6d88aff0b71"
+    "nypr-player": "github:nypublicradio/nypr-player#2e153572aa709865f78108448238170d68013d72"
   },
   "ember-addon": {
     "paths": [
