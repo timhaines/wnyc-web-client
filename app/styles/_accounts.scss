@@ -47,7 +47,7 @@
 @include mq($medium-and-up, $h-medium-and-up) {
   .login {
     .account-form {
-      height: 520px;
+      height: 535px;
     }
 
     .account-promo {
@@ -57,7 +57,7 @@
 
   .signup {
     .account-form {
-      height: 770px;
+      height: 825px;
     }
 
     .account-promo {
@@ -254,6 +254,7 @@
 
 .account-form-btn--facebook {
   @include btn--facebook;
+  margin-bottom: 14px;
 }
 
 .account-header {
