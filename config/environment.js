@@ -117,6 +117,7 @@ module.exports = function(environment) {
     // put beta host at the root so it can be overridden by Django
     wnycBetaURL: process.env.WNYC_BETA_URL,
     featureFlags: {
+      'social-auth': process.env.SOCIAL_AUTH,
       'discover': true,
       'other-discover': process.env.OTHER_DISCOVER,
       'autoplay-prefs': true
