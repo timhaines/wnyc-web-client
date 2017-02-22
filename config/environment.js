@@ -117,6 +117,7 @@ module.exports = function(environment) {
     // put beta host at the root so it can be overridden by Django
     wnycBetaURL: process.env.WNYC_BETA_URL,
     featureFlags: {
+      'social-auth': process.env.SOCIAL_AUTH,
       'discover': true,
       'other-discover': process.env.OTHER_DISCOVER,
     },
@@ -137,6 +138,15 @@ module.exports = function(environment) {
     },
     moment: {
       includeTimezone: '2010-2020'
+    },
+    torii: {
+      providers: {
+        'facebook-connect': {
+          appId: process.env.FB_APP || '1399025636795196',
+          scope: 'user_friends,email',
+          version: 'v2.8'
+        }
+      }
     }
   };
 

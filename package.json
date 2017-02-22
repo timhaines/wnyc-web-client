@@ -69,7 +69,7 @@
     "ember-feature-flags": "3.0.0",
     "ember-fetch": "1.3.0",
     "ember-getowner-polyfill": "1.0.1",
-    "ember-hifi": "github:nypublicradio/ember-hifi#883652ac5d5c3a1e07e9469036f1f1170c06cecf",
+    "ember-hifi": "^1.7.1",
     "ember-holygrail-layout": "^0.1.4",
     "ember-load-initializers": "^0.5.1",
     "ember-metrics": "0.7.0",
@@ -97,9 +97,10 @@
     "liquid-fire": "0.26.4",
     "loader.js": "^4.0.10",
     "morgan": "^1.6.1",
-    "nypr-ui": "github:nypublicradio/nypr-ui#3d3f9aaf79bad8a030300dc9acd3dd1439ec791f",
     "nypr-account-settings": "github:nypublicradio/nypr-account-settings#01bf3260b849ea9cf9309e744aa0349163aaaac7",
-    "nypr-player": "github:nypublicradio/nypr-player#7f2082d5ca0c673c3a993e12f4b5e6d7c85087fc"
+    "nypr-player": "github:nypublicradio/nypr-player#7f2082d5ca0c673c3a993e12f4b5e6d7c85087fc",
+    "nypr-ui": "github:nypublicradio/nypr-ui#49300b524e0b6f6096dd91cccf1dcb3320122cb3",
+    "torii": "0.8.1"
   },
   "ember-addon": {
     "paths": [

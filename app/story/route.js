@@ -12,6 +12,7 @@ export default Ember.Route.extend(PlayParamMixin, {
   googleAds:    service(),
   currentUser:  service(),
   dataPipeline: service(),
+  currentUser:  service(),
   
   titleToken(model) {
     return `${get(model, 'story.title')} - ${get(model, 'story.headers.brand.title')}`;
