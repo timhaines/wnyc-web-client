@@ -10,10 +10,9 @@ export default Ember.Route.extend(PlayParamMixin, {
   metrics:      service(),
   session:      service(),
   googleAds:    service(),
-  currentUser:  service(),
   dataPipeline: service(),
   currentUser:  service(),
-  
+
   titleToken(model) {
     return `${get(model, 'story.title')} - ${get(model, 'story.headers.brand.title')}`;
   },
@@ -40,7 +39,7 @@ export default Ember.Route.extend(PlayParamMixin, {
     let dataPipeline = get(this, 'dataPipeline');
     let {containers:action, title:label} = get(model, 'story.analytics');
     let nprVals = get(model, 'story.nprAnalyticsDimensions');
-    
+
     get(this, 'googleAds').doTargeting(get(model, 'story'));
 
     if (get(model, 'story.extendedStory.headerDonateChunk')) {
@@ -60,7 +59,7 @@ export default Ember.Route.extend(PlayParamMixin, {
       title: label,
       nprVals,
     });
-    
+
     // data pipeline
     dataPipeline.reportItemView({
       cms_id: get(model, 'story.id'),
@@ -69,14 +68,14 @@ export default Ember.Route.extend(PlayParamMixin, {
       client: config.clientSlug
     });
   },
-  
+
   setupController(controller) {
     controller.set('isMobile', window.Modernizr.touchevents);
     controller.set('session', get(this, 'session'));
     controller.set('user', get(this, 'currentUser.user'));
     return this._super(...arguments);
   },
-  
+
   actions: {
     willTransition() {
       this._super(...arguments);
