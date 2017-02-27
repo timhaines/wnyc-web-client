@@ -68,7 +68,7 @@ test('Submitting invalid credentials shows error messages', function(assert) {
   andThen(() => {
     assert.equal(currentSession(this.application).get('isAuthenticated'), false);
     assert.equal(find('.account-form-heading').text().trim(), 'Log in to WNYC');
-    assert.equal(find('.nypr-input-error').length, 1);
+    assert.equal(find('.account-form-error').length, 1);
   });
 });
 
