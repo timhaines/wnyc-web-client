@@ -61,10 +61,10 @@ deployment:
             AUTH_SERVICE: $DEMO_AUTH_SERVICE
             WNYC_ADMIN_ROOT: $DEMO_ADMIN_ROOT
             GOOGLE_TAG_MANAGER_ID: $DEMO_GOOGLE_TAG_MANAGER_ID
-  auth:
-    branch: auth
+  stage:
+    branch: stage
     commands:
-      - ./node_modules/ember-cli/bin/ember deploy auth --verbose --activate:
+      - ./node_modules/ember-cli/bin/ember deploy production --verbose:
           environment:
             AWS_ACCESS_KEY_ID: $DEPLOY_AWS_ACCESS_KEY_ID
             AWS_SECRET_ACCESS_KEY: $DEPLOY_AWS_SECRET_ACCESS_KEY
