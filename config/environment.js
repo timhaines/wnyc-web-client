@@ -33,7 +33,8 @@ module.exports = function(environment) {
       name: 'GoogleTagManager',
       config: {
         id: process.env.GOOGLE_TAG_MANAGER_ID || (environment === 'production' ? 'GTM-PM94N2' : 'GTM-KJZRH7H')
-      }
+      },
+      environments: ['production']
     }],
     EmberENV: {
       FEATURES: {
@@ -197,6 +198,7 @@ module.exports = function(environment) {
     ENV.wnycURL = '//example.com';
     ENV.wnycBetaURL = 'http://example.com';
     ENV.wnycAuthAPI = 'http://example.com';
+    ENV.siteId = 1;
   }
 
   if (environment === 'production') {
