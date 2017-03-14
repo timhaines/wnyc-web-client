@@ -23,6 +23,7 @@
     "broccoli-merge-trees": "^1.1.0",
     "broccoli-sourcemap-concat": "^2.0.2",
     "broccoli-stew": "^1.4.0",
+    "cors": "^2.8.1",
     "ember-ajax": "^2.4.1",
     "ember-body-class": "0.4.0",
     "ember-cli": "^2.9.1",
@@ -95,9 +96,9 @@
     "liquid-fire": "0.26.4",
     "loader.js": "^4.0.10",
     "morgan": "^1.6.1",
+    "nypr-account-settings": "nypublicradio/nypr-account-settings",
     "nypr-player": "nypublicradio/nypr-player#new-events",
     "nypr-ui": "nypublicradio/nypr-ui",
-    "nypr-account-settings": "nypublicradio/nypr-account-settings",
     "torii": "0.8.1"
   },
   "ember-addon": {
