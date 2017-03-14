@@ -17,9 +17,8 @@ const LISTEN_ACTIONS = {
 };
 
 export default Service.extend({
-  host:             config.wnycAPI,
-  itemViewPath:     'analytics/v1/events/viewed',
-  listenActionPath: 'analytics/v1/events/listened',
+  itemViewPath:     'v1/events/viewed',
+  listenActionPath: 'v1/events/listened',
   currentReferrer:  null,
 
   session:      service(),
@@ -34,7 +33,9 @@ export default Service.extend({
       let data = this._generateData(incoming);
       this._send(data, this.itemViewPath);
 
-      this._legacySend(`api/most/view/managed_item/${data.cms_id}/`);
+      if (data.cms_id) {
+        this._legacySend(`api/most/view/managed_item/${data.cms_id}/`);
+      }
     });
   },
 
@@ -82,7 +83,7 @@ export default Service.extend({
     this.get('session').authorize('authorizer:nypr', (header, value) => {
       fetchOptions.headers[header] = value;
     });
-    fetch(`${config.wnycAPI}/${path}`, fetchOptions);
+    fetch(`${config.platformEventsAPI}/${path}`, fetchOptions);
   },
 
   _legacySend(path) {
@@ -99,7 +100,7 @@ export default Service.extend({
     this.get('session').authorize('authorizer:nypr', (header, value) => {
       fetchOptions.headers[header] = value;
     });
-    fetch(`${config.wnycAPI}/${path}`, fetchOptions);
+    fetch(`${config.platformEventsAPI}/${path}`, fetchOptions);
   },
 
   _generateData(incoming, action) {
