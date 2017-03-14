@@ -359,7 +359,7 @@ test('can play a segmented story all the way through more than once', function(a
   return wait();
 });
 
-test('service records a listen when a story is played', function(assert) {
+test('service passes correct attrs to data pipeline to report an on_demand listen action', function(assert) {
 
   let done = assert.async();
   let audio = DummyConnection.create({
@@ -385,7 +385,6 @@ test('service records a listen when a story is played', function(assert) {
     cms_id: story.id,
     current_audio_position: 0,
     item_type: story.itemType,
-    site_id: story.siteId,
   };
     
   Ember.run(() => {
@@ -470,7 +469,7 @@ test('service records a listen when a story is played', function(assert) {
   });
 });
 
-test('service records a listen when a stream is played', function(assert) {
+test('service passes correct attrs to data pipeline to report a livestream listen action', function(assert) {
 
   let done = assert.async();
   let reportStub = sinon.stub();
@@ -487,11 +486,10 @@ test('service records a listen when a stream is played', function(assert) {
   let audio = DummyConnection.create({ url: stream.attrs.urls.rtsp });
   
   let expected = {
-    audio_type: 'stream',
+    audio_type: 'livestream',
     cms_id: currentStory.id,
     item_type: currentStory.itemType,
-    site_id: currentStory.siteId,
-    stream_id: stream.slug,
+    stream_id: Number(stream.id),
     current_audio_position: 0
   };
     
@@ -506,7 +504,7 @@ test('service records a listen when a stream is played', function(assert) {
           assert.equal(reportStub.callCount, 3);
           assert.deepEqual(reportStub.getCall(0).args, ['start', expected], 'should have received proper attrs');
           assert.deepEqual(reportStub.getCall(1).args, ['pause', expected], 'should have received proper attrs');
-          assert.deepEqual(reportStub.getCall(2).args, ['resume', expected], 'should have received proper attrs');
+          assert.deepEqual(reportStub.getCall(2).args, ['start', expected], 'should have received proper attrs');
           done();
         });
       });
