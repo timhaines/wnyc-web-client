@@ -97,7 +97,7 @@
     "morgan": "^1.6.1",
     "nypr-player": "nypublicradio/nypr-player",
     "nypr-ui": "nypublicradio/nypr-ui#cc301d4",
-    "nypr-account-settings": "nypublicradio/nypr-account-settings#27016fa5b04a1565f5945a993df34cb47a081d25",
+    "nypr-account-settings": "nypublicradio/nypr-account-settings#491d8edd9ca42df3bd513838c45073b71e9bb517",
     "torii": "0.8.1"
   },
   "ember-addon": {
