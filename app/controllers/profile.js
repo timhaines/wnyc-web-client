@@ -12,37 +12,36 @@ const FLASH_MESSAGES = {
 export default Controller.extend({
   session: service(),
   flashMessages: service(),
-  
+
   authenticate(password) {
     let email = this.get('model.email');
     return this.get('session').verify(email, password);
   },
-  
+
   changePassword(changeset) {
     let old_password = changeset.get('currentPassword');
     let new_password = changeset.get('newPassword');
     return new RSVP.Promise((resolve, reject) => {
+      let headers = {'Content-Type': 'application/json'};
       this.get('session').authorize('authorizer:nypr', (header, value) => {
-        fetch(`${config.wnycAuthAPI}/v1/password`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: value
-          },
-          body: JSON.stringify({old_password, new_password})
-        })
-        .then(response => {
-          if (response.ok) {
-            resolve();
-            this.showFlash('password');
-          } else {
-            reject();
-          }
-        });
+        headers[header] = value;
+      });
+      fetch(`${config.wnycAuthAPI}/v1/password`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({old_password, new_password})
+      })
+      .then(response => {
+        if (response.ok) {
+          resolve();
+          this.showFlash('password');
+        } else {
+          reject();
+        }
       });
     });
   },
-  
+
   showFlash(type) {
     this.get('flashMessages').add({
       message: FLASH_MESSAGES[type],
