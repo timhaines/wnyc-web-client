@@ -5,7 +5,6 @@ import service from 'ember-service/inject';
 
 const Router = Ember.Router.extend(AnalyticsMixin, {
   session:      service(),
-  dataPipeline: service(),
   
   location: config.locationType,
   
@@ -13,12 +12,6 @@ const Router = Ember.Router.extend(AnalyticsMixin, {
     this._super(...arguments);
     if (!['login', 'signup', 'validate', 'forgot', 'reset'].includes(transition.targetName)) {
       this.get('session').set('attemptedTransition', transition);
-    }
-  },
-  didTransition() {
-    this._super(...arguments);
-    if (!['story', 'channel'].includes(this.currentRouteName) && !this.currentRouteName.match(/loading/)) {
-      this.get('dataPipeline').reportItemView();
     }
   },
   rootURL: config.rootURL

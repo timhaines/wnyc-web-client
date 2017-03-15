@@ -19,6 +19,8 @@ dependencies:
     - npm i nypr-ui
     - npm i nypr-player
     - npm i nypr-account-settings
+    - npm i nypr-ads
+    - npm i ember-hifi
   cache_directories:
     - /opt/circleci/nodejs/v6.9.2/bin/
     - /opt/circleci/nodejs/v6.9.2/lib/node_modules
@@ -44,6 +46,7 @@ deployment:
             AUTH_SERVICE: $PROD_AUTH_SERVICE
             WNYC_ADMIN_ROOT: $PROD_ADMIN_ROOT
             GOOGLE_TAG_MANAGER_ID: $PROD_GOOGLE_TAG_MANAGER_ID
+            PLATFORM_EVENTS_SERVICE: $PROD_PLATFORM_EVENTS_SERVICE
   demo:
     branch: demo
     commands:
@@ -64,6 +67,7 @@ deployment:
             AUTH_SERVICE: $DEMO_AUTH_SERVICE
             WNYC_ADMIN_ROOT: $DEMO_ADMIN_ROOT
             GOOGLE_TAG_MANAGER_ID: $DEMO_GOOGLE_TAG_MANAGER_ID
+            PLATFORM_EVENTS_SERVICE: $DEMO_PLATFORM_EVENTS_SERVICE
 
 experimental:
   notify:
