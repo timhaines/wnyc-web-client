@@ -40,7 +40,7 @@ export default Ember.Component.extend({
     }
   }),
 
-  isStream             : equal('currentAudio.audioType', 'stream'),
+  isStream             : equal('currentAudio.audioType', 'livestream'),
   streamName           : reads('currentAudio.name'),
   streamScheduleUrl    : reads('currentAudio.scheduleUrl'),
   streamPlaylistUrl    : computed('currentAudio.playlistUrl', function() {
@@ -54,7 +54,7 @@ export default Ember.Component.extend({
   defaultImageUrl      : '/assets/img/bg/player-background.png',
   backdropImageUrl     : or('image', 'fallbackImage', 'defaultImageUrl'),
 
-  playingAudioType     : 'ondemand', //bumper, stream, ondemand
+  playingAudioType     : 'on_demand', //bumper, livestream, on_demand
 
   queueLength          : 0,
   showQueue            : false,
@@ -68,7 +68,8 @@ export default Ember.Component.extend({
       });
     },
     onPlay() {
-      let action = get(this, 'isStream') ? 'start' : 'resume';
+      let startingOnDemand = this.get('currentAudio.position') === 0 && !this.get('isStream');
+      let action = startingOnDemand ? 'start' : 'resume';
       get(this, 'audio').sendListenAction(get(this, 'currentAudio'), action);
     },
     onPause() {
