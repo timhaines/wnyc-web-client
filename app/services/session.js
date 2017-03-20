@@ -22,7 +22,7 @@ export default SessionService.extend({
         return RSVP.Promise.resolve(null);
       }
     }
-    
+
     let { browserId } = this.get('data');
     if (legacyId || browserId) {
       if (report) {
@@ -35,7 +35,7 @@ export default SessionService.extend({
         .then( ({ browser_id }) => this.set('data.browserId', browser_id));
     }
   },
-  
+
   staffAuth() {
     fetch(`${config.wnycAdminRoot}/api/v1/is_logged_in/?bust_cache=${Math.random()}`, {
       credentials: 'include'
