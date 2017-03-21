@@ -26,7 +26,7 @@
     "cors": "^2.8.1",
     "ember-ajax": "^2.4.1",
     "ember-body-class": "0.4.0",
-    "ember-cli": "^2.9.1",
+    "ember-cli": "2.11.1",
     "ember-cli-app-version": "^2.0.0",
     "ember-cli-autoprefixer": "^0.6.0",
     "ember-cli-babel": "^5.1.7",
@@ -100,6 +100,7 @@
     "nypr-ui": "github:nypublicradio/nypr-ui#demo",
     "nypr-account-settings": "github:nypublicradio/nypr-account-settings#demo",
     "nypr-ads": "nypublicradio/nypr-ads#demo",
+    "nypr-account-settings": "nypublicradio/nypr-account-settings#demo",
     "torii": "0.8.1"
   },
   "ember-addon": {
