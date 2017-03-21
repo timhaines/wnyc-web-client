@@ -68,7 +68,7 @@ export default function() {
 
   this.get(`/api/v3/shows`);
   this.get(`${baseUrl}/api/v3/shows`);
-  this.get(`${baseUrl}/api/v3/bucket/:slug`, 'bucket');
+  this.get(`${baseUrl}/api/v3/buckets/:slug`, 'bucket');
   this.get(`${baseUrl}/api/v3/story/detail/:id`, 'story');
   this.get(`${baseUrl}/api/v3/channel/\*id`, 'api-response');
   this.get(`${baseUrl}/api/v3/schedule/`, 'schedule');
@@ -229,4 +229,11 @@ export default function() {
 
   this.post(`${config.platformEventsAPI}/v1/events/viewed`, {});
   this.post(`${config.platformEventsAPI}/v1/events/listened`, {});
+  this.post(`${config.wnycAPI}/analytics/v1/events/viewed`, {});
+  this.post(`${config.wnycAPI}/analytics/v1/events/listened`, {});
+
+  /*-------------------------------------------------------------
+  membership microservice
+  ---------------------------------------------------------------*/
+  this.get(`${config.wnycAPI}/membership/v1/orders/`, 'orders');
 }
