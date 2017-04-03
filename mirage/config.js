@@ -227,8 +227,8 @@ export default function() {
   analytics microservice
   ---------------------------------------------------------------*/
 
-  this.post(`${config.wnycAPI}/analytics/v1/events/viewed`, {});
-  this.post(`${config.wnycAPI}/analytics/v1/events/listened`, {});
+  this.post(`${config.platformEventsAPI}/v1/events/viewed`, {});
+  this.post(`${config.platformEventsAPI}/v1/events/listened`, {});
 
   /*-------------------------------------------------------------
   membership microservice
