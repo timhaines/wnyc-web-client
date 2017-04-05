@@ -248,5 +248,5 @@ export default function() {
   /*-------------------------------------------------------------
   membership microservice
   ---------------------------------------------------------------*/
-  this.get(`${config.wnycAPI}/membership/v1/orders/`, 'orders');
+  this.get(`${config.wnycAPIGateway}/membership/v1/orders/`, 'orders');
 }
